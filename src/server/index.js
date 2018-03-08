@@ -2,14 +2,14 @@ import http from 'http';
 import path from 'path';
 import fs from 'fs-extra';
 import ejs from 'ejs';
-import express from 'express'
+import express from 'express';
 import serveFavicon from 'serve-favicon';
 
 import routes from './routes';
 import config from './config/default';
 
 const cwd = process.cwd();
-const port = process.env.PORT || _default2.default.port;
+const port = process.env.PORT || config.port;
 
 const app = express();
 

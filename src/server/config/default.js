@@ -4,4 +4,4 @@ const config = {
   // etc
 };
 
-exports default config;
+export default config;
