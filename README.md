@@ -29,5 +29,6 @@ Each route specifies its own `ejs` template file, as well as relevant data to po
 When using the `default.ejs` template, the relevant data includes html contents,
 specified in the `data.articles` field, which will be looked for in the `contents` directory.
 It also includes the menu definition, specified in the `data.menu` field.
-The menu designed to be used with the `default.ejs` template is defined in the `src/server/menus.js` file.
+The menu designed to be used with the `default.ejs` template is defined in the `src/server/menus.js` file,
+and is referenced as `main`.
 
