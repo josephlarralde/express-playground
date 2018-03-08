@@ -38,9 +38,7 @@ function createDirTree(filename, options = {}, level = 0, parent = null) {
     info.children = [];
 
     for (let i = 0; i < children.length; i++) {
-      if (level > 0 &&
-          options.filter &&
-          !options.filter(children[i])) {
+      if (options && options.filter && !options.filter(children[i])) {
         // do nothing
       } else {
         info.children.push(
