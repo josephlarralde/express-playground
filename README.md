@@ -1,6 +1,6 @@
 # express-playground
 
-#### starter project for express based websites
+### starter project for express based websites
 
 Clone this repository, `cd` into it, then :
 
@@ -17,7 +17,7 @@ The `build` command will run a watcher that will :
 
 Once the website built, it can be simply started by running `node dist/index.js`.
 
-#### structure
+### structure
 
 This project uses the `ejs` template engine for rendering html.
 The main html template is the `views/default.ejs` file, providing the basic
