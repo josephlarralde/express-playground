@@ -4,8 +4,10 @@
 
 Clone this repository, `cd` into it, then :
 
-`npm install`
-`npm run build`
+```
+npm install
+npm run build
+```
 
 The `build` command will run a watcher that will :
 
