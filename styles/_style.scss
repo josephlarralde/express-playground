@@ -1,0 +1,377 @@
+/* * * * * * * * * * * * * * * * * * BASICS * * * * * * * * * * * * * * * * * */
+
+html, body, h1, h2, h3, h4, h5, h6, ul, ol, li, p, a {
+  margin: 0;
+  padding: 0;
+  border: 0;
+}
+
+html, body {
+  width: 100%;
+  height: 100%;
+  // this prevents the scroll event to be fired by window ...
+  // overflow-x: hidden;
+}
+
+body {
+  color: $textColor;
+  background-color: $backgroundColor;
+  font-style: normal;
+  font-size: $fontSize;
+  line-height: $lineHeight;
+  font-family: LatoLatinoWeb, "Helvetica Neue", Helvetica, Arial, sans-serif;
+
+  // scroll-snap-type: proximity;
+  // scroll-snap-coordinate: 0 $bannerHeight;
+  // scroll-snap-destination: 0 0px;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  color: #000;
+  padding-bottom: 10px;
+  line-height: 1em;
+}
+
+p {
+  padding-bottom: 10px;
+}
+
+/* * * * * * * * * * * * * * * * * * BANNER * * * * * * * * * * * * * * * * * */
+
+.banner {
+  z-index: 1;
+  width: 100%;
+  height: $bannerHeight;
+  position: fixed;
+  top: 0;
+
+  .banner-container {
+    z-index: 3;
+    width: 100%;
+    height: inherit;
+    overflow: hidden;
+  }
+
+  canvas {
+    z-index: 2;
+    position: relative;
+    top: 0;
+    padding: 0;
+    margin: 0;
+    width: 100%;
+    height: $bannerHeight;
+  }
+}
+
+/* * * * * * * * * * * * * * * * * * NAVBAR * * * * * * * * * * * * * * * * * */
+
+.banner + .navbar {
+  top: $bannerHeight;
+}
+
+.navbar {
+  position: fixed;
+  display: block;
+
+  z-index: 1;
+  width: 100%;
+  height: $menuHeight;
+  top: 0;
+  background-color: $menuBgColor;
+  overflow-wrap: normal;
+
+  .menubar-mainmenu {
+    display: block;
+    max-width: $columnWidth;
+    margin: 0 auto;
+
+    ul.mainmenu {
+      width: 100%;
+      z-index: 1;
+      list-style: none;
+
+      li {
+        float: left;
+        max-height: $menuHeight;
+        display: inline-block;
+
+        a {
+          font-size: $menuFontSize;
+          line-height: $menuLineHeight;
+
+          display: block;
+          padding: $menuVerticalPadding $menuHorizontalPadding;
+          text-align: left;
+          text-decoration: none;
+          // max-height: $menuHeight;
+          color: $menuFontColor;
+          background-color: $menuBgColor;
+        }
+
+        a:hover {
+          // max-height: $menuHeight;
+          color: $menuFontHoverColor;
+          background-color: $menuBgHoverColor;
+        }
+
+        .active, a:hover.active {
+          // max-height: $menuHeight;
+          color: $menuFontActiveColor;
+          background-color: $menuBgActiveColor;
+        }
+      }
+    }
+  }
+
+  .menubar-overlay {
+    position: relative;
+    width: 100%;
+    max-width: $columnWidth;
+    margin: 0 auto;
+
+    .title {
+      font-size: $menuFontSize;
+      line-height: $menuLineHeight;
+
+      display: block;
+      z-index: 0;
+      position: absolute;
+      top: 0;
+      left: 0;
+      user-select: none;
+
+      color: $menuFontColor;
+      padding: $menuVerticalPadding $menuHorizontalPadding;
+    }
+
+    ul.overlay {
+      position: absolute;
+      top: 0;
+      right: 0;
+
+      li {
+        float: left;
+        max-height: $menuHeight;
+        display: inline-block;
+
+        img {
+          cursor: pointer;
+          width: $naviconSize;
+          height: $naviconSize;
+          display: block;
+          padding: $naviconVerticalPadding $menuHorizontalPadding;
+        }
+      }
+    }
+  }
+}
+
+//////////// for smartphones :
+@media only screen and (max-width : 500px) {
+  .navbar {
+    overflow: visible;
+
+    .menubar-mainmenu {
+      width: auto;
+
+      ul.mainmenu li {
+        width: 100%; // THIS IS FOR MOBILE STYLE
+      }
+
+      opacity: 0;
+      transform: scale(1, 0);
+      transition: 0ms ease;
+    }
+
+    .menubar-mainmenu.active {
+      opacity: 1;
+      transform: scale(1, 1);
+      transition: 100ms ease;
+    }
+
+    .menubar-overlay > .title { display: block; }
+    .menubar-overlay.active > .title { display: none; }
+    .navicon { display: block; }
+  }
+}
+
+//////////// for larger devices :
+@media only screen and (min-width : 501px) {
+  .navbar {
+    overflow: hidden; // HIDE THIS FOR MOBILE STYLE
+
+    .menubar-mainmenu {
+      width: $columnWidth; // HIDE THIS FOR MOBILE STYLE
+
+      ul.mainmenu li {
+        width: auto;
+      }
+
+      opacity: 1;
+      transform: scale(1, 1);
+      transition: 100ms ease;
+    }
+
+    .menubar-overlay > .title { display: none; }
+    .navicon { display: none; }
+  }
+}
+
+/* * * * * * * * * * * * * * * * * * ARTICLES * * * * * * * * * * * * * * * * */
+
+.banner + .navbar + .container {
+  padding: $bannerHeight + $menuHeight 0px $containerPaddingBottom 0px;
+}
+
+.banner + .container {
+  padding: $bannerHeight 0px $containerPaddingBottom 0px;
+}
+
+.navbar + .container {
+  padding: $menuHeight 0px $containerPaddingBottom 0px;
+}
+
+.container {
+  position: relative;
+  display: block;
+
+  width: auto;
+  max-width: $columnWidth;
+  margin: auto;
+  padding: 0px 0px $containerPaddingBottom 0px;
+
+  .column {
+    padding: 10px;
+    min-height: 100%;
+
+    a {
+      text-decoration: none;
+      color: #16d630;
+    }
+  }
+
+  img {
+    max-width: 100%;
+    max-height: 100%;
+    clear: both;
+  }
+
+  .article {
+    // for small screens in case of loooooooooooooooong words
+    word-wrap: break-word;
+    // text-align: justify;
+    display: block;
+    width: auto;
+    padding: 0px 10px 0px 10px;
+    clear: both;
+    //background-color: #ddd;
+
+    ul {
+      margin-left: 20px;
+    }
+  }
+
+  p {
+    margin-bottom: 10px;
+  }
+}
+
+/* * * * * * * * * * * * * * * * * PORTFOLIO * * * * * * * * * * * * * * * * */
+
+a .responsive-square-item-content {
+  color: #fff !important;
+  background: #000; //rgba(0, 0, 0, 0.5);
+}
+
+.responsive-square-item {
+  color: #fff;
+  display: block;
+  position: relative;
+  width: 25%;
+  // height: 25%;
+  padding-bottom: 25%;
+  overflow: hidden;
+  float: left;
+  border: 0px;
+
+  img {
+    position: absolute;
+
+    left: 0px;
+    right: 0px;
+    top: 0px;
+    bottom: 0px;
+
+    width: 100%;
+    height: 100%;
+  }
+
+  .responsive-square-item-content {
+    position: absolute;
+
+    left: 1px;
+    right: 1px;
+    top: 1px;
+    bottom: 1px;
+
+    background-size: contain !important;
+
+    div {
+      box-sizing: border-box;
+      position: absolute;
+      height: auto;
+      bottom: 0px;
+      width: 100%;
+      background-color: #000;
+      padding: 10px;
+      font-size: 14px;
+    }
+
+    div.light {
+      background-color: rgba(255, 255, 255, 0.3);
+    }
+
+    div.dark {
+      background-color: rgba(0, 0, 0, 0.3);
+    }
+  }
+}
+
+@media only screen and (max-width : 300px) {
+ .responsive-square-item {
+  width: 100%;
+  padding-bottom: 100%;
+ }
+}
+@media only screen and (max-width : 500px) and (min-width : 301px) {
+ .responsive-square-item {
+  width: 50%;
+  padding-bottom: 50%;
+ }
+}
+@media only screen and (max-width : 800px) and (min-width : 501px) {
+ .responsive-square-item {
+  width: 33.3%;
+  padding-bottom: 33.3%;
+ }
+}
+@media only screen and (max-width : 1290px) and (min-width : 801px) {
+ .responsive-square-item {
+  width: 25%;
+  padding-bottom: 25%;
+ }
+}
+
+/* * * * * * * * * * * * * * * * * * FOOTER * * * * * * * * * * * * * * * * * */
+
+.footer {
+  font-size: small;
+  z-index: 1;
+  padding: 6px;
+  width: 100%;
+  position: fixed;
+  bottom: 0;
+  color: $footerFontColor;
+  background-color: $footerBgColor;
+  text-align: center;
+}

@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+
+<%- include('partials/header', {
+  title: data.title,
+  styles: [ data.style ],
+  scripts: [ data.script ],
+}) %>
+
+<body class="<%- route %>">
+  <%- include('partials/banner', {
+    banner: null, // data.banner,
+  }) %>
+
+  <%- include('partials/navbar', {
+    route: route,
+    title: data.title,
+    menu: data.menu,
+    // route: route,
+    // routes: routes
+  }) %>
+  <%- include('partials/container', {
+    format: data.format,
+    contents: data.contents,
+  }) %>
+  <!-- <%- include('partials/footer') %> -->
+</body>
+
+</html>

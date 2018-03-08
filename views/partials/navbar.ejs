@@ -1,0 +1,34 @@
+<div class="navbar">
+
+  <div class="menubar-mainmenu">
+    <ul class="mainmenu" role="menubar">
+
+      <% for (let item in menu) { %>
+        <li role="menuitem">
+          <% var r = menu[item].route; %>
+          <a href="<%= r %>" class="<%= (route === r) ? 'active' : '' %>">
+          <%= menu[item].text %>
+          </a>
+        </li>
+      <% } %>
+    </ul>
+  </div>
+
+  <div class="menubar-overlay">
+    <div class="title"><%= title %></div>
+
+    <ul class="overlay" role="menubar">
+      <li role="menuitem">
+        <div class="usericon">
+          <img src="usericon.png">
+        </div>
+      </li>
+      <li role="menuitem">
+        <div class="navicon">
+          <img src="navicon.png">
+        </div>
+      </li>
+    </ul>
+  </div>
+
+</div>

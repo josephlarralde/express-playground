@@ -1,0 +1,48 @@
+/////////////// global colors
+$backgroundColor: #fff;
+$textColor: #000;
+
+/////////////// global fonts
+$fontSize: 16px;
+$lineHeight: 18px;
+
+//=============================== BANNER =====================================//
+
+/////////////// banner variables
+$bannerHeight: 90px;
+
+//================================ MENU ======================================//
+
+/////////////// menu colors
+$menuFontColor: rgba(255, 255, 255, 0.9);
+$menuBgColor: #000;
+$menuFontActiveColor: rgba(255, 255, 255, 1);
+$menuBgActiveColor: #333;
+$menuFontHoverColor: $menuFontColor;
+$menuBgHoverColor: #222;
+
+/////////////// font variables
+$menuFontSize: 16px;
+$menuLineHeight: 20px;
+
+/////////////// menu variables
+$menuVerticalPadding: 10px;
+$menuHorizontalPadding: 16px;
+
+$naviconSize: 22px;
+$naviconVerticalPadding: $menuVerticalPadding - ($naviconSize - $menuLineHeight) * 0.5;
+
+// $menuHeight: $naviconSize + 2 * $naviconVerticalPadding;
+$menuHeight: $menuLineHeight + 2 * $menuVerticalPadding;
+
+//============================== CONTENTS ====================================//
+
+/////////////// contents variables
+$columnWidth: 800px;
+$containerPaddingBottom: 40px;
+
+//=============================== FOOTER =====================================//
+
+/////////////// footer colors
+$footerFontColor: $menuFontColor;
+$footerBgColor: $menuBgColor;

@@ -1,0 +1,28 @@
+<div class="container">
+
+  <% switch (format) {
+    case 'articles': { %>
+
+      <div class="column">
+        <% for (let a in contents) { %>
+          <div class="article">
+            <p>
+              <%- contents[a] %>
+            </p>
+          </div>
+        <% } %>
+      </div>
+
+  <% } break;
+    case 'raw': { %>
+
+      <% for (let a in contents) { %>
+        <%- contents[a] %>
+      <% } %>
+
+  <% } break;
+    default:
+    break;
+  } %>
+
+</div>
