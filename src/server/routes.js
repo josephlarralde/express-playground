@@ -2,7 +2,10 @@ import path from 'path';
 import menus from './menus';
 
 // const userMenu = null;
+const mainMenu = menus.main;
 const userMenu = menus.user;
+
+function copy(obj) { return JSON.parse(JSON.stringify(obj)); }
 
 const routes = {
   home: {
@@ -15,8 +18,8 @@ const routes = {
       scripts: [ 'main' ],
       format: 'articles',
       articles: [ 'marwanarzanawar', 'blougoulf' ],
-      menu: menus.main,
-      userMenu: userMenu,
+      menu: copy(mainMenu),
+      userMenu: copy(userMenu),
     }
   },
   editor: {
@@ -28,8 +31,8 @@ const routes = {
       scripts: [ 'main' ],
       format: 'raw',
       articles: [ 'monitor' ],
-      menu: menus.main,
-      userMenu: userMenu,
+      menu: copy(mainMenu),
+      userMenu: copy(userMenu),
     }
   },
   notfound: {
@@ -41,8 +44,8 @@ const routes = {
       scripts: [ 'main' ],
       format: 'articles',
       articles: [ 'notfound' ],
-      menu: menus.main,
-      userMenu: userMenu,
+      menu: copy(mainMenu),
+      userMenu: copy(userMenu),
     }
   }
 };
