@@ -11,6 +11,7 @@ const routes = {
     route: config.root,
     template: 'default',
     data: {
+      root: config.root,
       logged: true,
       title: 'Blog',
       styles: [ 'main' ],
@@ -25,6 +26,7 @@ const routes = {
     route: path.join(config.root, 'editor'),
     template: 'default',
     data: {
+      root: config.root,
       title: 'Monitor',
       styles: [ 'main' ],
       scripts: [ 'main' ],
@@ -38,6 +40,7 @@ const routes = {
     route: '/notfound',
     template: 'default',
     data: {
+      root: config.root,
       title: '404',
       styles: [ 'main' ],
       scripts: [ 'main' ],
