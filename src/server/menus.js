@@ -1,16 +1,19 @@
+import path from 'path';
+import config from './config/default';
+
 const main = {
   main: {
-    route: '/',
+    route: config.root,
     text: 'Blog',
     picture: null
   },
   editor: {
-    route: '/editor',
+    route: path.join(config.root, 'editor'),
     text: 'Monitor',
     picture: null
   },
   truc: {
-    route: '/truc',
+    route: path.join(config.root, 'truc'),
     text: 'Truc',
     picture: null
   }
