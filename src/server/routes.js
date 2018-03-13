@@ -8,7 +8,7 @@ const userMenu = menus.user;
 
 const routes = {
   home: {
-    route: '/',
+    route: config.root,
     template: 'default',
     data: {
       root: config.root,
