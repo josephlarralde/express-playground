@@ -2,20 +2,16 @@
 
 ### starter project for express based websites
 
-Clone this repository, `cd` into it, then :
+Clone this repository, `cd` into it, then type `npm install` to install dependencies.
 
-```
-npm install
-npm run build
-```
+Three scripts are available:
 
-The `build` command will run a watcher that will :
-
-- transpile your es6 code on each modification in the `src/server` directory and restart the server
-- transpile your es6 code on each modification in the `src/client` directory and browserify relevant `index.js` files
-- generate the `css` files on each modification in the `styles` directory
-
-Once the website built, it can be simply started by running `node dist/index.js`.
+* `watch` will transpile all es6 source code and browserify transpiled client code, render styles, start the server, then run a watcher that will:
+    * transpile es6 source code on each modification in the `src/server` directory then restart the server
+    * transpile es6 source code on each modification in the `src/client` directory then browserify relevant `index.js` files
+    * generate the `css` files on each modification in the `styles` directory
+* `start` will transpile all es6 source code and browserify transpiled client code, render styles, then start the server.
+* `render` will transpile all es6 source code and browserify transpiled client code, render styles, then render all routes as static html files.
 
 ### structure
 
