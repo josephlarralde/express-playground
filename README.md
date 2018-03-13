@@ -6,12 +6,12 @@ Clone this repository, `cd` into it, then type `npm install` to install dependen
 
 Three scripts are available:
 
-* `watch` will transpile all es6 source code and browserify transpiled client code, render styles, start the server, then run a watcher that will:
+* `npm run watch` will transpile all es6 source code and browserify transpiled client code, render styles, start the server, then run a watcher that will:
     * transpile es6 source code on each modification in the `src/server` directory then restart the server
     * transpile es6 source code on each modification in the `src/client` directory then browserify relevant `index.js` files
     * generate the `css` files on each modification in the `styles` directory
-* `start` will transpile all es6 source code and browserify transpiled client code, render styles, then start the server.
-* `render` will transpile all es6 source code and browserify transpiled client code, render styles, then render all routes as static html files.
+* `npm run start` will transpile all es6 source code and browserify transpiled client code, render styles, then start the server.
+* `npm run render` will transpile all es6 source code and browserify transpiled client code, render styles, then render all routes as static html files.
 
 ### structure
 
