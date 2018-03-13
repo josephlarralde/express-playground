@@ -7,9 +7,20 @@ const transpiler = require('./transpiler');
 const MyServer = require('./server');
 const logger = require('./logger');
 
+//================================== UTIL ====================================//
+
+const inspect = util.inspect;
+const filterExtensions = util.filterExtensions;
+const createDirTree = util.createDirTree;
+const getFileFromFilename = util.getFileFromFilename;
+
 //================================== PATHS ===================================//
 
-const clientPublicDir = 'docs';
+let clientPublicDir = 'public';
+
+if (process.argv.length > 3) {
+  clientPublicDir = process.argv[3];
+}
 
 const sassDir = 'styles';
 const clientSrcDir = 'src/client';
@@ -24,24 +35,28 @@ const serverIndexPath = 'dist/server/index.js';
 
 const server = new MyServer(serverIndexPath);
 
-//================================== UTIL ====================================//
-
-const inspect = util.inspect;
-const filterExtensions = util.filterExtensions;
-const createDirTree = util.createDirTree;
-const getFileFromFilename = util.getFileFromFilename;
-
 //======================== FOLDER STRUCTURE HOLDERS ==========================//
 
 let clientFiles;
 let serverFiles;
+let publicFiles;
 
 function updateClientDirTree() {
-  clientFiles = createDirTree(clientSrcDir, { filter: filterExtensions });
+  clientFiles = createDirTree(clientSrcDir, {
+    filter: filterExtensions([ 'js', 'json' ])
+  });
 }
 
 function updateServerDirTree() {
-  serverFiles = createDirTree(serverSrcDir, { filter: filterExtensions });
+  serverFiles = createDirTree(serverSrcDir, {
+    filter: filterExtensions([ 'js', 'json' ])
+  });
+}
+
+function updatePublicDirTree() {
+  publicFiles = createDirTree(clientPublicDir, {
+    filter: filterExtensions([ 'html' ])
+  });
 }
 
 //============================= SCRIPT SELECTOR ==============================//
@@ -72,8 +87,8 @@ function build() {
 
   // clean old transpiled / bundled files
   fs.removeSync(cssDir);
-  fs.removeSync(clientDistDir);
   fs.removeSync(javaScriptDir);
+  fs.removeSync(clientDistDir);
   fs.removeSync(serverDistDir);
 
   logger.startTwirling();
@@ -111,6 +126,8 @@ function renderHtml() {
   const routes = require('../dist/server/routes').default;
   logger.startTwirling();
 
+  updatePublicDirTree();
+  transpiler.removeHtmlFiles(publicFiles);
   transpiler.renderHtmlFiles(routes, clientPublicDir, config)
   .then(function() {
     logger.stopTwirling();
@@ -137,7 +154,7 @@ function watchSource() {
   };
 
   watch.createMonitor(sassDir, {
-    filter: filterExtensions
+    filter: filterExtensions([ 'scss' ])
   }, function(monitor) {
     monitor.on('created', onStyleSrcChange);
     monitor.on('changed', onStyleSrcChange);
@@ -161,7 +178,7 @@ function watchSource() {
   };
 
   watch.createMonitor(clientSrcDir, {
-    filter: filterExtensions
+    filter: filterExtensions([ 'js', 'json' ])
   }, function(monitor) {
     monitor.on('created', onClientSrcChange);
     monitor.on('changed', onClientSrcChange);
@@ -186,7 +203,7 @@ function watchSource() {
   };
 
   watch.createMonitor(serverSrcDir, {
-    filter: filterExtensions
+    filter: filterExtensions([ 'js', 'json' ])
   }, function(monitor) {
     monitor.on('created', onServerSrcChange);
     monitor.on('changed', onServerSrcChange);

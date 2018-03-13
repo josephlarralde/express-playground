@@ -11,12 +11,13 @@ import config from './config/default';
 
 const cwd = process.cwd();
 const port = process.env.PORT || config.port;
+const publicDir = process.argv.length > 3 ? process.argv[3] : 'public';
 
 const app = express();
 
-app.use(serveFavicon(path.join(cwd, 'docs', 'favicon.ico')));
+app.use(serveFavicon(path.join(cwd, publicDir, 'favicon.ico')));
 app.use(compression());
-app.use(express.static(path.join(cwd, 'docs'), {
+app.use(express.static(path.join(cwd, publicDir), {
   extensions: ['css', 'js', 'JPG', 'JPEG', 'jpg', 'jpeg', 'PNG', 'png']
 }));
 app.set('view engine', 'ejs');
@@ -43,6 +44,7 @@ function render(res, route) {
 };
 
 for (let r in routes) {
+  routes[r].config = config;
   app.get(routes[r]['route'], function (req, res) {
     render(res, routes[r]);
   });

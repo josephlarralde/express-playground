@@ -6,7 +6,7 @@
   "scripts": {
     "watch": "node build/index.js watch",
     "start": "node build/index.js start",
-    "render": "node build/index.js render",
+    "render": "node build/index.js render docs",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "",

@@ -15,8 +15,12 @@ function inspect(obj) {
 
 const validateExtensions = new RegExp(`^(.+\\.(${validExtensions.join('|')})|[^\\.]*)$`);
 
-function filterExtensions(file) {
-  return validateExtensions.test(file);
+function filterExtensions(extensions) {
+  return function(file) {
+    // const ext = extensions;
+    const regex = new RegExp(`^(.+\\.(${extensions.join('|')})|[^\\.]*)$`);
+    return validateExtensions.test(file);
+  }
 };
 
 //======= recursive folder hierarchy walker, stolen and adapted from : =======//

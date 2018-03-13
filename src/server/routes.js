@@ -9,12 +9,11 @@ const routes = {
     route: '/',
     template: 'default',
     data: {
-      // logged: true,
       title: 'Blog',
       styles: [ 'main' ],
       scripts: [ 'main' ],
       format: 'articles',
-      articles: [ 'static-website', 'blougoulf' ],
+      articles: [ 'static-website' ],
       menu: mainMenu,
       userMenu: userMenu,
     }
@@ -36,7 +35,7 @@ const routes = {
     route: '/notfound',
     template: 'default',
     data: {
-      title: '404',
+      title: '404', // this is how a static 404 page is built
       styles: [ 'main' ],
       scripts: [ 'main' ],
       format: 'articles',

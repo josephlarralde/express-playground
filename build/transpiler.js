@@ -107,6 +107,16 @@ function renderHtmlFiles(routes, outputDir, config) {
   return Promise.all(promises);
 }
 
+function removeHtmlFiles(inputFiles) {
+  if (inputFiles.type === 'file' && path.extname(inputFiles.path) === '.html') {
+    fs.removeSync(inputFiles.path);
+  } else if (inputFiles.type === 'folder' && inputFiles.children) {
+    for (let i = 0; i < inputFiles.children.length; i++) {
+      removeHtmlFiles(inputFiles.children[i]);
+    }
+  }
+}
+
 //================================= BABEL ====================================//
 
 function transpileFile(inputFile, inputDir, outputDir) {
@@ -272,8 +282,8 @@ function bundleFileAndParents(changedFile, srcDir, distDir, bundleDir) {
 
 module.exports = {
   renderStyle,
-  // transformRouteNames,
   renderHtmlFiles,
+  removeHtmlFiles,
   transpileFile,
   transpileFileAndChildren,
   bundleFile,
