@@ -14,7 +14,6 @@ class UserMenu extends Script {
     }
 
     this.$usericon.addEventListener('click', (e) => {
-      console.log('clicked user icon');
       this.$userContainer.classList.toggle('show');
     }, true);
 

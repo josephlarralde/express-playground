@@ -64,6 +64,7 @@ var CosmicBanner = function (_Script) {
       this.$canvas = document.querySelector('.banner-canvas');
       this.$ctx = this.$canvas.getContext('2d');
 
+      // const ref = this.bannerHeight;
       // this._schmitt = new SchmittTrigger(ref * 0.5, ref * 0.75, (hide) => {
       //   if (!hide && this.$banner.classList.contains('hidden')) {
       //     this.$banner.classList.remove('hidden');
@@ -90,9 +91,11 @@ var CosmicBanner = function (_Script) {
   }, {
     key: '_updateHideBanner',
     value: function _updateHideBanner() {
-      // eventually use schmitt trigger ...
       var offset = window.pageYOffset || document.documentElement.scrollTop;
       var hide = offset > 0;
+
+      // eventually use schmitt trigger ...
+      // this._schmitt.scroll(offset);
 
       if (!hide && this.$banner.classList.contains('hidden')) {
         this.$banner.classList.remove('hidden');
@@ -313,7 +316,6 @@ var UserMenu = function (_Script) {
       }
 
       this.$usericon.addEventListener('click', function (e) {
-        console.log('clicked user icon');
         _this2.$userContainer.classList.toggle('show');
       }, true);
 

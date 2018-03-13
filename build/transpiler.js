@@ -7,6 +7,8 @@ const path = require('path');
 const colors = require('colors');
 
 const logger = require('./logger');
+const inspect = require('./util').inspect;
+
 const cwd = process.cwd();
 
 //=============================== NODE_SASS ==================================//
@@ -54,16 +56,32 @@ function loadHtmlContents(route) {
   }
 };
 
-function renderHtmlFile(route, outputDir) {
+function transformRouteNames(route, config) {
+  if (typeof route === 'object') {
+    for (let key in route) {
+      if (key === 'route') {
+        if (route[key].lastIndexOf('/', 0) === 0) {
+          route[key] = `${config.root}${route[key]}`
+        }
+      } else {
+        transformRouteNames(route[key], config);
+      }
+    }
+  }
+}
+
+function renderHtmlFile(route, outputDir, config) {
   return new Promise(function(resolve, request) {
-    const outputFilepath = route.route === '/notfound'
+    const outputFilepath = route.data.title === '404'
                          ? path.join(outputDir, '404.html')
                          : path.join(outputDir, route.route, 'index.html');
     const task = `rendering file ${outputFilepath}`
     logger.notifyStartTask(task);
+    transformRouteNames(route, config);
     loadHtmlContents(route);
 
     const templatePath = path.join('views', `${route.template}.ejs`);
+
     ejs.renderFile(templatePath, route, {}, function(err, res) {
       if (err !== null) {
         logger.notifyTaskError(task, err);
@@ -76,11 +94,12 @@ function renderHtmlFile(route, outputDir) {
   });
 }
 
-function renderHtmlFiles(routes, outputDir) {
+function renderHtmlFiles(routes, outputDir, config) {
   const promises = [];
 
   for (var r in routes) {
-    promises.push(renderHtmlFile(routes[r], outputDir));
+    routes[r].config = config;
+    promises.push(renderHtmlFile(routes[r], outputDir, config));
   }
 
   return Promise.all(promises);
@@ -251,6 +270,7 @@ function bundleFileAndParents(changedFile, srcDir, distDir, bundleDir) {
 
 module.exports = {
   renderStyle,
+  // transformRouteNames,
   renderHtmlFiles,
   transpileFile,
   transpileFileAndChildren,

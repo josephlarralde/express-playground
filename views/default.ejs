@@ -2,6 +2,7 @@
 <html>
 
 <%- include('partials/header', {
+  config: config,
   data: data,
 }) %>
 
@@ -10,12 +11,16 @@
   }) %>
 
   <%- include('partials/navbar', {
+    config: config,
     route: route,
     data: data,
   }) %>
+
   <%- include('partials/container', {
+    config: config,
     data: data,
   }) %>
+
   <!-- <%- include('partials/footer') %> -->
 </body>
 

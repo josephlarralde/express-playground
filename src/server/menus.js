@@ -9,7 +9,6 @@ const main = {
   },
   editor: {
     route: '/editor',
-    // route: path.join(`${config.root}`, 'editor'),
     text: 'Monitor',
     picture: null
   },

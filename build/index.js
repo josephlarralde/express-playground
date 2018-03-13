@@ -24,12 +24,14 @@ const serverIndexPath = 'dist/server/index.js';
 
 const server = new MyServer(serverIndexPath);
 
-//======================== FOLDER STRUCTURE HOLDERS ==========================//
+//================================== UTIL ====================================//
 
 const inspect = util.inspect;
 const filterExtensions = util.filterExtensions;
 const createDirTree = util.createDirTree;
 const getFileFromFilename = util.getFileFromFilename;
+
+//======================== FOLDER STRUCTURE HOLDERS ==========================//
 
 let clientFiles;
 let serverFiles;
@@ -51,7 +53,7 @@ if (process.argv.length > 2) {
   } else if (process.argv[2] === 'start') {
     build().then(start);
   } else if (process.argv[2] === 'render') {
-    build().then(renderHtml)
+    build().then(renderHtml);
   }
 }
 
@@ -105,10 +107,11 @@ function start() {
 //* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * */
 
 function renderHtml() {
+  const config = require('../dist/server/config/default').default;
   const routes = require('../dist/server/routes').default;
   logger.startTwirling();
 
-  transpiler.renderHtmlFiles(routes, clientPublicDir)
+  transpiler.renderHtmlFiles(routes, clientPublicDir, config)
   .then(function() {
     logger.stopTwirling();
     logger.notifyDone();

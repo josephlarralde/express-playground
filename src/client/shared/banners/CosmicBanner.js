@@ -15,6 +15,7 @@ class CosmicBanner extends Script {
     this.$canvas = document.querySelector('.banner-canvas');
     this.$ctx = this.$canvas.getContext('2d');
 
+    // const ref = this.bannerHeight;
     // this._schmitt = new SchmittTrigger(ref * 0.5, ref * 0.75, (hide) => {
     //   if (!hide && this.$banner.classList.contains('hidden')) {
     //     this.$banner.classList.remove('hidden');
@@ -40,9 +41,11 @@ class CosmicBanner extends Script {
   }
 
   _updateHideBanner() {
-      // eventually use schmitt trigger ...
       const offset = window.pageYOffset || document.documentElement.scrollTop;
       const hide = offset > 0;
+
+      // eventually use schmitt trigger ...
+      // this._schmitt.scroll(offset);
 
       if (!hide && this.$banner.classList.contains('hidden')) {
         this.$banner.classList.remove('hidden');
