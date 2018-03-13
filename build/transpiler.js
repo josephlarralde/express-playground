@@ -60,8 +60,9 @@ function transformRouteNames(route, config) {
   if (typeof route === 'object') {
     for (let key in route) {
       if (key === 'route') {
-        if (route[key].lastIndexOf('/', 0) === 0) {
-          route[key] = `${config.root}${route[key]}`
+        if (route[key].lastIndexOf('/', 0) === 0 && !route.prependedServerRoot) {
+          route[key] = `${config.serverRoot}${route[key]}`
+          route.prependedServerRoot = true;
         }
       } else {
         transformRouteNames(route[key], config);

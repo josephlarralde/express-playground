@@ -32,11 +32,11 @@ const user = {
   },
   loggedOut: {
     signIn: {
-      route: '/sign-in',
+      route: '/#',
       text: 'Sign in',
     },
     logIn: {
-      route: '/log-in',
+      route: '/#',
       text: 'Log in',
     }
   }

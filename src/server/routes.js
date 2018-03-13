@@ -18,8 +18,10 @@ const routes = {
       scripts: [ 'main' ],
       format: 'articles',
       articles: [ 'marwanarzanawar', 'blougoulf' ],
-      menu: copy(mainMenu),
-      userMenu: copy(userMenu),
+      menu: mainMenu,
+      userMenu: userMenu,
+      // menu: copy(mainMenu),
+      // userMenu: copy(userMenu),
     }
   },
   editor: {
@@ -31,8 +33,10 @@ const routes = {
       scripts: [ 'main' ],
       format: 'raw',
       articles: [ 'monitor' ],
-      menu: copy(mainMenu),
-      userMenu: copy(userMenu),
+      menu: mainMenu,
+      userMenu: userMenu,
+      // menu: copy(mainMenu),
+      // userMenu: copy(userMenu),
     }
   },
   notfound: {
@@ -44,8 +48,10 @@ const routes = {
       scripts: [ 'main' ],
       format: 'articles',
       articles: [ 'notfound' ],
-      menu: copy(mainMenu),
-      userMenu: copy(userMenu),
+      menu: mainMenu,
+      userMenu: userMenu,
+      // menu: copy(mainMenu),
+      // userMenu: copy(userMenu),
     }
   }
 };
