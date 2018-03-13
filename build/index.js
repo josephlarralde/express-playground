@@ -96,6 +96,7 @@ function build() {
 //* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * */
 
 function start() {
+  // todo: delete static html files from public dir
   server.start();
 }
 

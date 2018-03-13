@@ -14,9 +14,9 @@ const port = process.env.PORT || config.port;
 
 const app = express();
 
-app.use(serveFavicon(path.join(cwd, 'public', 'favicon.ico')));
+app.use(serveFavicon(path.join(cwd, 'docs', 'favicon.ico')));
 app.use(compression());
-app.use(express.static(path.join(cwd, 'public'), {
+app.use(express.static(path.join(cwd, 'docs'), {
   extensions: ['css', 'js', 'JPG', 'JPEG', 'jpg', 'jpeg', 'PNG', 'png']
 }));
 app.set('view engine', 'ejs');
