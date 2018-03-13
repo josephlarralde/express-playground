@@ -23,7 +23,8 @@ const routes = {
     }
   },
   editor: {
-    route: '/editor',
+    // route: '/editor',
+    route: path.join(config.root, 'editor'),
     template: 'default',
     data: {
       root: config.root,
