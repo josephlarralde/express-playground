@@ -9,13 +9,14 @@ const logger = require('./logger');
 
 //================================== PATHS ===================================//
 
-const sassDir = 'styles';
-const cssDir = 'public/css';
+const clientPublicDir = 'docs';
 
+const sassDir = 'styles';
 const clientSrcDir = 'src/client';
 const clientDistDir = 'dist/client';
-const clientPublicDir = 'public';
-const clientBundleDir = 'public/js';
+
+const cssDir = path.join(clientPublicDir, 'css');
+const javaScriptDir = path.join(clientPublicDir, 'js');
 
 const serverSrcDir = 'src/server';
 const serverDistDir = 'dist/server';
@@ -70,7 +71,7 @@ function build() {
   // clean old transpiled / bundled files
   fs.removeSync(cssDir);
   fs.removeSync(clientDistDir);
-  fs.removeSync(clientBundleDir);
+  fs.removeSync(javaScriptDir);
   fs.removeSync(serverDistDir);
 
   logger.startTwirling();
@@ -80,7 +81,7 @@ function build() {
       // regenerate them from actual source code
       transpiler.renderStyle(sassDir, cssDir),
       transpiler.transpileFileAndChildren(clientFiles, clientSrcDir, clientDistDir),
-      transpiler.bundleFileAndChildren(clientFiles, clientSrcDir, clientDistDir, clientBundleDir),
+      transpiler.bundleFileAndChildren(clientFiles, clientSrcDir, clientDistDir, javaScriptDir),
       transpiler.transpileFileAndChildren(serverFiles, serverSrcDir, serverDistDir),
     ]).then(function() {
       logger.stopTwirling();
@@ -147,7 +148,7 @@ function watchSource() {
     logger.startTwirling();
     transpiler.transpileFile(file, clientSrcDir, clientDistDir)
     .then(function() {
-      transpiler.bundleFileAndParents(file, clientSrcDir, clientDistDir, clientBundleDir);
+      transpiler.bundleFileAndParents(file, clientSrcDir, clientDistDir, javaScriptDir);
     })
     .then(function() {
       logger.stopTwirling();
@@ -162,7 +163,7 @@ function watchSource() {
     monitor.on('changed', onClientSrcChange);
     monitor.on('removed', function(f) {
       fs.removeSync(f.replace(clientSrcDir, clientDistDir));
-      fs.removeSync(f.replace(clientSrcDir, clientBundleDir));
+      fs.removeSync(f.replace(clientSrcDir, javaScriptDir));
     });
   });
 
@@ -187,7 +188,7 @@ function watchSource() {
     monitor.on('changed', onServerSrcChange);
     monitor.on('removed', function(f) {
       fs.removeSync(f.replace(clientSrcDir, clientDistDir));
-      fs.removeSync(f.replace(clientSrcDir, clientBundleDir));
+      fs.removeSync(f.replace(clientSrcDir, javaScriptDir));
     });
   });
 }

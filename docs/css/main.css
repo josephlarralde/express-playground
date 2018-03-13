@@ -1,0 +1,522 @@
+/**
+ * Self-hosted Lato Latin open source font
+ */
+/* Webfont: LatoLatin-Black */
+@font-face {
+  font-family: 'LatoLatinoWebBlack';
+  src: url("../fonts/LatoLatin-Black.eot");
+  /* IE9 Compat Modes */
+  src: url("../fonts/LatoLatin-Black.eot?#iefix") format("embedded-opentype"), url("../fonts/LatoLatin-Black.woff2") format("woff2"), url("../fonts/LatoLatin-Black.woff") format("woff"), url("../fonts/LatoLatin-Black.ttf") format("truetype");
+  font-style: normal;
+  font-weight: normal;
+  text-rendering: optimizeLegibility; }
+
+/* Webfont: LatoLatin-BlackItalic */
+@font-face {
+  font-family: 'LatoLatinoWebBlack';
+  src: url("../fonts/LatoLatin-BlackItalic.eot");
+  /* IE9 Compat Modes */
+  src: url("../fonts/LatoLatin-BlackItalic.eot?#iefix") format("embedded-opentype"), url("../fonts/LatoLatin-BlackItalic.woff2") format("woff2"), url("../fonts/LatoLatin-BlackItalic.woff") format("woff"), url("../fonts/LatoLatin-BlackItalic.ttf") format("truetype");
+  font-style: italic;
+  font-weight: normal;
+  text-rendering: optimizeLegibility; }
+
+/* Webfont: LatoLatin-Bold */
+@font-face {
+  font-family: 'LatoLatinoWeb';
+  src: url("../fonts/LatoLatin-Bold.eot");
+  /* IE9 Compat Modes */
+  src: url("../fonts/LatoLatin-Bold.eot?#iefix") format("embedded-opentype"), url("../fonts/LatoLatin-Bold.woff2") format("woff2"), url("../fonts/LatoLatin-Bold.woff") format("woff"), url("../fonts/LatoLatin-Bold.ttf") format("truetype");
+  font-style: normal;
+  font-weight: bold;
+  text-rendering: optimizeLegibility; }
+
+/* Webfont: LatoLatin-BoldItalic */
+@font-face {
+  font-family: 'LatoLatinoWeb';
+  src: url("../fonts/LatoLatin-BoldItalic.eot");
+  /* IE9 Compat Modes */
+  src: url("../fonts/LatoLatin-BoldItalic.eot?#iefix") format("embedded-opentype"), url("../fonts/LatoLatin-BoldItalic.woff2") format("woff2"), url("../fonts/LatoLatin-BoldItalic.woff") format("woff"), url("../fonts/LatoLatin-BoldItalic.ttf") format("truetype");
+  font-style: italic;
+  font-weight: bold;
+  text-rendering: optimizeLegibility; }
+
+/* Webfont: LatoLatin-Hairline */
+@font-face {
+  font-family: 'LatoLatinoWebHairline';
+  src: url("../fonts/LatoLatin-Hairline.eot");
+  /* IE9 Compat Modes */
+  src: url("../fonts/LatoLatin-Hairline.eot?#iefix") format("embedded-opentype"), url("../fonts/LatoLatin-Hairline.woff2") format("woff2"), url("../fonts/LatoLatin-Hairline.woff") format("woff"), url("../fonts/LatoLatin-Hairline.ttf") format("truetype");
+  font-style: normal;
+  font-weight: normal;
+  text-rendering: optimizeLegibility; }
+
+/* Webfont: LatoLatin-HairlineItalic */
+@font-face {
+  font-family: 'LatoLatinoWebHairline';
+  src: url("../fonts/LatoLatin-HairlineItalic.eot");
+  /* IE9 Compat Modes */
+  src: url("../fonts/LatoLatin-HairlineItalic.eot?#iefix") format("embedded-opentype"), url("../fonts/LatoLatin-HairlineItalic.woff2") format("woff2"), url("../fonts/LatoLatin-HairlineItalic.woff") format("woff"), url("../fonts/LatoLatin-HairlineItalic.ttf") format("truetype");
+  font-style: italic;
+  font-weight: normal;
+  text-rendering: optimizeLegibility; }
+
+/* Webfont: LatoLatin-Heavy */
+@font-face {
+  font-family: 'LatoLatinoWebHeavy';
+  src: url("../fonts/LatoLatin-Heavy.eot");
+  /* IE9 Compat Modes */
+  src: url("../fonts/LatoLatin-Heavy.eot?#iefix") format("embedded-opentype"), url("../fonts/LatoLatin-Heavy.woff2") format("woff2"), url("../fonts/LatoLatin-Heavy.woff") format("woff"), url("../fonts/LatoLatin-Heavy.ttf") format("truetype");
+  font-style: normal;
+  font-weight: normal;
+  text-rendering: optimizeLegibility; }
+
+/* Webfont: LatoLatin-HeavyItalic */
+@font-face {
+  font-family: 'LatoLatinoWebHeavy';
+  src: url("../fonts/LatoLatin-HeavyItalic.eot");
+  /* IE9 Compat Modes */
+  src: url("../fonts/LatoLatin-HeavyItalic.eot?#iefix") format("embedded-opentype"), url("../fonts/LatoLatin-HeavyItalic.woff2") format("woff2"), url("../fonts/LatoLatin-HeavyItalic.woff") format("woff"), url("../fonts/LatoLatin-HeavyItalic.ttf") format("truetype");
+  font-style: italic;
+  font-weight: normal;
+  text-rendering: optimizeLegibility; }
+
+/* Webfont: LatoLatin-Italic */
+@font-face {
+  font-family: 'LatoLatinoWeb';
+  src: url("../fonts/LatoLatin-Italic.eot");
+  /* IE9 Compat Modes */
+  src: url("../fonts/LatoLatin-Italic.eot?#iefix") format("embedded-opentype"), url("../fonts/LatoLatin-Italic.woff2") format("woff2"), url("../fonts/LatoLatin-Italic.woff") format("woff"), url("../fonts/LatoLatin-Italic.ttf") format("truetype");
+  font-style: italic;
+  font-weight: normal;
+  text-rendering: optimizeLegibility; }
+
+/* Webfont: LatoLatin-Light */
+@font-face {
+  font-family: 'LatoLatinoWebLight';
+  src: url("../fonts/LatoLatin-Light.eot");
+  /* IE9 Compat Modes */
+  src: url("../fonts/LatoLatin-Light.eot?#iefix") format("embedded-opentype"), url("../fonts/LatoLatin-Light.woff2") format("woff2"), url("../fonts/LatoLatin-Light.woff") format("woff"), url("../fonts/LatoLatin-Light.ttf") format("truetype");
+  font-style: normal;
+  font-weight: normal;
+  text-rendering: optimizeLegibility; }
+
+/* Webfont: LatoLatin-LightItalic */
+@font-face {
+  font-family: 'LatoLatinoWebLight';
+  src: url("../fonts/LatoLatin-LightItalic.eot");
+  /* IE9 Compat Modes */
+  src: url("../fonts/LatoLatin-LightItalic.eot?#iefix") format("embedded-opentype"), url("../fonts/LatoLatin-LightItalic.woff2") format("woff2"), url("../fonts/LatoLatin-LightItalic.woff") format("woff"), url("../fonts/LatoLatin-LightItalic.ttf") format("truetype");
+  font-style: italic;
+  font-weight: normal;
+  text-rendering: optimizeLegibility; }
+
+/* Webfont: LatoLatin-Medium */
+@font-face {
+  font-family: 'LatoLatinoWebMedium';
+  src: url("../fonts/LatoLatin-Medium.eot");
+  /* IE9 Compat Modes */
+  src: url("../fonts/LatoLatin-Medium.eot?#iefix") format("embedded-opentype"), url("../fonts/LatoLatin-Medium.woff2") format("woff2"), url("../fonts/LatoLatin-Medium.woff") format("woff"), url("../fonts/LatoLatin-Medium.ttf") format("truetype");
+  font-style: normal;
+  font-weight: normal;
+  text-rendering: optimizeLegibility; }
+
+/* Webfont: LatoLatin-MediumItalic */
+@font-face {
+  font-family: 'LatoLatinoWebMedium';
+  src: url("../fonts/LatoLatin-MediumItalic.eot");
+  /* IE9 Compat Modes */
+  src: url("../fonts/LatoLatin-MediumItalic.eot?#iefix") format("embedded-opentype"), url("../fonts/LatoLatin-MediumItalic.woff2") format("woff2"), url("../fonts/LatoLatin-MediumItalic.woff") format("woff"), url("../fonts/LatoLatin-MediumItalic.ttf") format("truetype");
+  font-style: italic;
+  font-weight: normal;
+  text-rendering: optimizeLegibility; }
+
+/* Webfont: LatoLatin-Regular */
+@font-face {
+  font-family: 'LatoLatinoWeb';
+  src: url("../fonts/LatoLatin-Regular.eot");
+  /* IE9 Compat Modes */
+  src: url("../fonts/LatoLatin-Regular.eot?#iefix") format("embedded-opentype"), url("../fonts/LatoLatin-Regular.woff2") format("woff2"), url("../fonts/LatoLatin-Regular.woff") format("woff"), url("../fonts/LatoLatin-Regular.ttf") format("truetype");
+  font-style: normal;
+  font-weight: normal;
+  text-rendering: optimizeLegibility; }
+
+/* Webfont: LatoLatin-Semibold */
+@font-face {
+  font-family: 'LatoLatinoWebSemibold';
+  src: url("../fonts/LatoLatin-Semibold.eot");
+  /* IE9 Compat Modes */
+  src: url("../fonts/LatoLatin-Semibold.eot?#iefix") format("embedded-opentype"), url("../fonts/LatoLatin-Semibold.woff2") format("woff2"), url("../fonts/LatoLatin-Semibold.woff") format("woff"), url("../fonts/LatoLatin-Semibold.ttf") format("truetype");
+  font-style: normal;
+  font-weight: normal;
+  text-rendering: optimizeLegibility; }
+
+/* Webfont: LatoLatin-SemiboldItalic */
+@font-face {
+  font-family: 'LatoLatinoWebSemibold';
+  src: url("../fonts/LatoLatin-SemiboldItalic.eot");
+  /* IE9 Compat Modes */
+  src: url("../fonts/LatoLatin-SemiboldItalic.eot?#iefix") format("embedded-opentype"), url("../fonts/LatoLatin-SemiboldItalic.woff2") format("woff2"), url("../fonts/LatoLatin-SemiboldItalic.woff") format("woff"), url("../fonts/LatoLatin-SemiboldItalic.ttf") format("truetype");
+  font-style: italic;
+  font-weight: normal;
+  text-rendering: optimizeLegibility; }
+
+/* Webfont: LatoLatin-Thin */
+@font-face {
+  font-family: 'LatoLatinoWebThin';
+  src: url("../fonts/LatoLatin-Thin.eot");
+  /* IE9 Compat Modes */
+  src: url("../fonts/LatoLatin-Thin.eot?#iefix") format("embedded-opentype"), url("../fonts/LatoLatin-Thin.woff2") format("woff2"), url("../fonts/LatoLatin-Thin.woff") format("woff"), url("../fonts/LatoLatin-Thin.ttf") format("truetype");
+  font-style: normal;
+  font-weight: normal;
+  text-rendering: optimizeLegibility; }
+
+/* Webfont: LatoLatin-ThinItalic */
+@font-face {
+  font-family: 'LatoLatinoWebThin';
+  src: url("../fonts/LatoLatin-ThinItalic.eot");
+  /* IE9 Compat Modes */
+  src: url("../fonts/LatoLatin-ThinItalic.eot?#iefix") format("embedded-opentype"), url("../fonts/LatoLatin-ThinItalic.woff2") format("woff2"), url("../fonts/LatoLatin-ThinItalic.woff") format("woff"), url("../fonts/LatoLatin-ThinItalic.ttf") format("truetype");
+  font-style: italic;
+  font-weight: normal;
+  text-rendering: optimizeLegibility; }
+
+/**
+ * All variables definitions
+ */
+/**
+ * Base styles
+ */
+/* * * * * * * * * * * * * * * * * * BASICS * * * * * * * * * * * * * * * * * */
+html, body, h1, h2, h3, h4, h5, h6, ul, ol, li, p, a {
+  margin: 0;
+  padding: 0;
+  border: 0; }
+
+html, body {
+  width: 100%;
+  height: 100%; }
+
+body {
+  color: #000;
+  background-color: #fff;
+  font-style: normal;
+  font-size: 16px;
+  line-height: 18px;
+  font-family: LatoLatinoWeb, "Helvetica Neue", Helvetica, Arial, sans-serif; }
+
+h1, h2, h3, h4, h5, h6 {
+  color: #000;
+  padding-bottom: 10px;
+  line-height: 1em; }
+
+p {
+  padding-bottom: 10px; }
+
+/* * * * * * * * * * * * * * * * * * BANNER * * * * * * * * * * * * * * * * * */
+.banner {
+  position: fixed;
+  display: block;
+  top: 0;
+  z-index: 1;
+  width: 100%;
+  height: 90px; }
+  .banner.hidden {
+    height: 0px; }
+  .banner .banner-container {
+    z-index: 3;
+    width: 100%;
+    height: inherit;
+    overflow: hidden; }
+  .banner canvas {
+    z-index: 2;
+    position: relative;
+    top: 0;
+    padding: 0;
+    margin: 0;
+    width: 100%;
+    height: 90px; }
+
+/* * * * * * * * * * * * * * * * * * NAVBAR * * * * * * * * * * * * * * * * * */
+.banner + .navbar {
+  top: 90px; }
+
+.banner.hidden + .navbar {
+  top: 0; }
+
+.navbar {
+  position: fixed;
+  display: block;
+  z-index: 1;
+  width: 100%;
+  height: 40px;
+  top: 0;
+  background-color: #000;
+  overflow-wrap: normal; }
+  .navbar .navbar-mainmenu {
+    position: relative;
+    display: block;
+    max-width: 800px;
+    margin: 0 auto; }
+    .navbar .navbar-mainmenu ul.mainmenu {
+      position: absolute;
+      width: 100%;
+      z-index: 1;
+      list-style: none; }
+      .navbar .navbar-mainmenu ul.mainmenu li {
+        float: left;
+        max-height: 40px;
+        display: inline-block; }
+        .navbar .navbar-mainmenu ul.mainmenu li a {
+          font-size: 16px;
+          line-height: 20px;
+          display: block;
+          padding: 10px 16px;
+          text-align: left;
+          text-decoration: none;
+          color: rgba(255, 255, 255, 0.9);
+          background-color: #000; }
+        .navbar .navbar-mainmenu ul.mainmenu li a:hover {
+          color: rgba(255, 255, 255, 0.9);
+          background-color: #222; }
+        .navbar .navbar-mainmenu ul.mainmenu li .current, .navbar .navbar-mainmenu ul.mainmenu li a:hover.current {
+          color: white;
+          background-color: #333; }
+  .navbar .navbar-overlay {
+    position: relative;
+    z-index: 2;
+    width: 100%;
+    max-width: 800px;
+    margin: 0 auto; }
+    .navbar .navbar-overlay .title {
+      font-size: 16px;
+      line-height: 20px;
+      display: block;
+      position: absolute;
+      z-index: 0;
+      top: 0;
+      left: 0;
+      user-select: none;
+      color: rgba(255, 255, 255, 0.9);
+      padding: 10px 16px; }
+    .navbar .navbar-overlay ul.overlay {
+      position: absolute;
+      display: block;
+      top: 0;
+      right: 0; }
+      .navbar .navbar-overlay ul.overlay li {
+        float: left;
+        height: auto;
+        display: inline-block; }
+        .navbar .navbar-overlay ul.overlay li img {
+          position: relative;
+          cursor: pointer;
+          width: 22px;
+          height: 22px;
+          padding: 9px 16px;
+          display: block; }
+        .navbar .navbar-overlay ul.overlay li .user-container {
+          position: relative;
+          display: block; }
+          .navbar .navbar-overlay ul.overlay li .user-container .usermenu {
+            position: absolute;
+            display: block;
+            top: 47px;
+            right: 7px;
+            background-color: rgba(55, 90, 120, 0.9);
+            border-radius: 10px;
+            max-height: 0px; }
+            .navbar .navbar-overlay ul.overlay li .user-container .usermenu a {
+              position: relative;
+              padding: 10px;
+              transition: 0ms;
+              color: #ccc;
+              float: none;
+              display: block;
+              text-decoration: none;
+              white-space: nowrap;
+              opacity: 0;
+              pointer-events: none; }
+            .navbar .navbar-overlay ul.overlay li .user-container .usermenu a:hover {
+              color: #eee; }
+          .navbar .navbar-overlay ul.overlay li .user-container .arrow-up {
+            position: relative;
+            margin-top: -5px;
+            margin-right: 15px;
+            float: right;
+            width: 0;
+            height: 0;
+            border-left: 5px solid transparent;
+            border-right: 5px solid transparent;
+            border-bottom: 0px solid transparent; }
+          .navbar .navbar-overlay ul.overlay li .user-container .items {
+            top: 47px;
+            max-height: 0px; }
+          .navbar .navbar-overlay ul.overlay li .user-container.show .usermenu {
+            transition: 300ms ease;
+            max-height: 500px; }
+            .navbar .navbar-overlay ul.overlay li .user-container.show .usermenu a {
+              transition: opacity 300ms ease;
+              opacity: 1;
+              pointer-events: auto; }
+          .navbar .navbar-overlay ul.overlay li .user-container.show .arrow-up {
+            border-bottom: 5px solid rgba(55, 90, 120, 0.9); }
+          .navbar .navbar-overlay ul.overlay li .user-container.show .items {
+            max-height: 500px; }
+
+@media only screen and (max-width: 500px) {
+  .navbar {
+    overflow: visible; }
+    .navbar .navbar-mainmenu {
+      width: auto;
+      opacity: 0;
+      transform: scale(1, 0);
+      transition: 0ms ease; }
+      .navbar .navbar-mainmenu ul.mainmenu {
+        top: 40px; }
+        .navbar .navbar-mainmenu ul.mainmenu li {
+          width: 100%; }
+    .navbar.active > .navbar-mainmenu {
+      opacity: 1;
+      transform: scale(1, 1);
+      transition: 100ms ease; }
+    .navbar .navbar-overlay > .title {
+      display: block; }
+    .navbar.active > .navbar-overlay > .title {
+      display: none; }
+    .navbar .navicon-container {
+      display: block; } }
+
+@media only screen and (min-width: 501px) {
+  .navbar {
+    overflow: visible; }
+    .navbar .navbar-mainmenu {
+      width: 800px;
+      opacity: 1;
+      transform: scale(1, 1);
+      transition: 100ms ease; }
+      .navbar .navbar-mainmenu ul.mainmenu {
+        top: 0; }
+        .navbar .navbar-mainmenu ul.mainmenu li {
+          width: auto; }
+    .navbar .navbar-overlay > .title {
+      display: none; }
+    .navbar .navicon-container {
+      display: none; } }
+
+/* * * * * * * * * * * * * * * * * * ARTICLES * * * * * * * * * * * * * * * * */
+.banner + .navbar + .container {
+  padding: 130px 0px 40px 0px; }
+
+.banner + .container {
+  padding: 90px 0px 40px 0px; }
+
+.navbar + .container {
+  padding: 40px 0px 40px 0px; }
+
+.container {
+  position: relative;
+  display: block;
+  width: auto;
+  max-width: 800px;
+  margin: auto;
+  padding: 0px 0px 40px 0px; }
+  .container .column {
+    padding: 10px;
+    min-height: 100%; }
+    .container .column a {
+      text-decoration: none;
+      color: #16d630; }
+  .container img {
+    max-width: 100%;
+    max-height: 100%;
+    clear: both; }
+  .container .article {
+    word-wrap: break-word;
+    display: block;
+    width: auto;
+    padding: 0px 10px 0px 10px;
+    clear: both; }
+    .container .article ul {
+      margin-left: 20px; }
+  .container p {
+    margin-bottom: 10px; }
+
+/* * * * * * * * * * * * * * * * * PORTFOLIO * * * * * * * * * * * * * * * * */
+a .responsive-square-item-content {
+  color: #fff !important;
+  background: #000; }
+
+.responsive-square-item {
+  color: #fff;
+  display: block;
+  position: relative;
+  width: 25%;
+  padding-bottom: 25%;
+  overflow: hidden;
+  float: left;
+  border: 0px; }
+  .responsive-square-item img {
+    position: absolute;
+    left: 0px;
+    right: 0px;
+    top: 0px;
+    bottom: 0px;
+    width: 100%;
+    height: 100%; }
+  .responsive-square-item .responsive-square-item-content {
+    position: absolute;
+    left: 1px;
+    right: 1px;
+    top: 1px;
+    bottom: 1px;
+    background-size: contain !important; }
+    .responsive-square-item .responsive-square-item-content div {
+      box-sizing: border-box;
+      position: absolute;
+      height: auto;
+      bottom: 0px;
+      width: 100%;
+      background-color: #000;
+      padding: 10px;
+      font-size: 14px; }
+    .responsive-square-item .responsive-square-item-content div.light {
+      background-color: rgba(255, 255, 255, 0.3); }
+    .responsive-square-item .responsive-square-item-content div.dark {
+      background-color: rgba(0, 0, 0, 0.3); }
+
+@media only screen and (max-width: 300px) {
+  .responsive-square-item {
+    width: 100%;
+    padding-bottom: 100%; } }
+
+@media only screen and (max-width: 500px) and (min-width: 301px) {
+  .responsive-square-item {
+    width: 50%;
+    padding-bottom: 50%; } }
+
+@media only screen and (max-width: 800px) and (min-width: 501px) {
+  .responsive-square-item {
+    width: 33.3%;
+    padding-bottom: 33.3%; } }
+
+@media only screen and (max-width: 1290px) and (min-width: 801px) {
+  .responsive-square-item {
+    width: 25%;
+    padding-bottom: 25%; } }
+
+/* * * * * * * * * * * * * * * * * * FOOTER * * * * * * * * * * * * * * * * * */
+.footer {
+  font-size: small;
+  z-index: 1;
+  padding: 6px;
+  width: 100%;
+  position: fixed;
+  bottom: 0;
+  color: rgba(255, 255, 255, 0.9);
+  background-color: #000;
+  text-align: center; }
+
+/**
+ * Overrides for custom styles
+ */
