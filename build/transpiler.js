@@ -1,11 +1,13 @@
 const sass = require('node-sass');
 const babel = require('babel-core');
 const browserify = require('browserify');
+const ejs = require('ejs');
 const fs = require('fs-extra');
 const path = require('path');
 const colors = require('colors');
 
 const logger = require('./logger');
+const cwd = process.cwd();
 
 //=============================== NODE_SASS ==================================//
 
@@ -36,6 +38,54 @@ function renderStyle(inputDir, outputDir) {
   });
 }
 
+//============================= EJS TEMPLATES ================================//
+
+// see: src/server/routes.js file
+
+function loadHtmlContents(route) {
+  if (Array.isArray(route.data.articles)) {
+    const a = route.data.articles;
+    route.data.contents = [];
+
+    for (let i = 0; i < a.length; i++) {
+      const filepath = path.join(cwd, 'contents', a[i] + '.html');
+      route.data.contents.push(fs.readFileSync(filepath));
+    }
+  }
+};
+
+function renderHtmlFile(route, outputDir) {
+  return new Promise(function(resolve, request) {
+    const outputFilepath = route.route === '/notfound'
+                         ? path.join(outputDir, '404.html')
+                         : path.join(outputDir, route.route, 'index.html');
+    const task = `rendering file ${outputFilepath}`
+    logger.notifyStartTask(task);
+    loadHtmlContents(route);
+
+    const templatePath = path.join('views', `${route.template}.ejs`);
+    ejs.renderFile(templatePath, route, {}, function(err, res) {
+      if (err !== null) {
+        logger.notifyTaskError(task, err);
+      } else {
+        fs.ensureFileSync(outputFilepath);
+        fs.writeFileSync(outputFilepath, res);
+      }
+      resolve();
+    });
+  });
+}
+
+function renderHtmlFiles(routes, outputDir) {
+  const promises = [];
+
+  for (var r in routes) {
+    promises.push(renderHtmlFile(routes[r], outputDir));
+  }
+
+  return Promise.all(promises);
+}
+
 //================================= BABEL ====================================//
 
 function transpileFile(inputFile, inputDir, outputDir) {
@@ -56,7 +106,7 @@ function transpileFile(inputFile, inputDir, outputDir) {
         resolve();
       });
     } else {
-      logger.log(`creating directory ${outputFilepath} ...`);
+      logger.notifyStartTask(`creating directory ${outputFilepath} ...`);
       resolve();
     }
   });
@@ -201,6 +251,7 @@ function bundleFileAndParents(changedFile, srcDir, distDir, bundleDir) {
 
 module.exports = {
   renderStyle,
+  renderHtmlFiles,
   transpileFile,
   transpileFileAndChildren,
   bundleFile,

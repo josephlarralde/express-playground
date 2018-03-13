@@ -1,13 +1,13 @@
 <div class="container">
 
-  <% switch (format) {
+  <% switch (data.format) {
     case 'articles': { %>
 
       <div class="column">
-        <% for (let a in contents) { %>
+        <% for (let a in data.contents) { %>
           <div class="article">
             <p>
-              <%- contents[a] %>
+              <%- data.contents[a] %>
             </p>
           </div>
         <% } %>
@@ -16,8 +16,8 @@
   <% } break;
     case 'raw': { %>
 
-      <% for (let a in contents) { %>
-        <%- contents[a] %>
+      <% for (let a in data.contents) { %>
+        <%- data.contents[a] %>
       <% } %>
 
   <% } break;

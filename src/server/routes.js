@@ -1,16 +1,22 @@
 import menus from './menus';
 
+// const userMenu = null;
+const userMenu = menus.user;
+// const userMenu = menus.apps;
+
 const routes = {
   home: {
     route: '/',
     template: 'default',
     data: {
+      logged: true,
       title: 'Blog',
-      style: 'main',
-      script: 'main',
+      styles: [ 'main' ],
+      scripts: [ 'main' ],
       format: 'articles',
-      articles: ['marwanarzanawar', 'blougoulf'],
-      menu: menus.main
+      articles: [ 'marwanarzanawar', 'blougoulf' ],
+      menu: menus.main,
+      userMenu: userMenu,
     }
   },
   editor: {
@@ -18,11 +24,12 @@ const routes = {
     template: 'default',
     data: {
       title: 'Monitor',
-      style: 'main',
-      script: 'main',
+      styles: [ 'main' ],
+      scripts: [ 'main' ],
       format: 'raw',
-      articles: ['monitor'],
-      menu: menus.main
+      articles: [ 'monitor' ],
+      menu: menus.main,
+      userMenu: userMenu,
     }
   },
   notfound: {
@@ -30,11 +37,12 @@ const routes = {
     template: 'default',
     data: {
       title: '404',
-      style: 'main',
-      script: 'main',
+      styles: [ 'main' ],
+      scripts: [ 'main' ],
       format: 'articles',
-      articles: ['notfound'],
-      menu: menus.main
+      articles: [ 'notfound' ],
+      menu: menus.main,
+      userMenu: userMenu,
     }
   }
 };

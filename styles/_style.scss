@@ -9,8 +9,6 @@ html, body, h1, h2, h3, h4, h5, h6, ul, ol, li, p, a {
 html, body {
   width: 100%;
   height: 100%;
-  // this prevents the scroll event to be fired by window ...
-  // overflow-x: hidden;
 }
 
 body {
@@ -39,11 +37,18 @@ p {
 /* * * * * * * * * * * * * * * * * * BANNER * * * * * * * * * * * * * * * * * */
 
 .banner {
+  position: fixed;
+  display: block;
+  top: 0;
   z-index: 1;
   width: 100%;
   height: $bannerHeight;
-  position: fixed;
-  top: 0;
+  // transition: 100ms ease;
+
+  &.hidden {
+    height: 0px;
+    // transition: 100ms ease;
+  }
 
   .banner-container {
     z-index: 3;
@@ -67,6 +72,12 @@ p {
 
 .banner + .navbar {
   top: $bannerHeight;
+  // transition: 100ms ease;
+}
+
+.banner.hidden + .navbar {
+  top: 0;
+  // transition: 100ms ease;
 }
 
 .navbar {
@@ -80,12 +91,14 @@ p {
   background-color: $menuBgColor;
   overflow-wrap: normal;
 
-  .menubar-mainmenu {
+  .navbar-mainmenu {
+    position: relative;
     display: block;
     max-width: $columnWidth;
     margin: 0 auto;
 
     ul.mainmenu {
+      position: absolute;
       width: 100%;
       z-index: 1;
       list-style: none;
@@ -103,19 +116,16 @@ p {
           padding: $menuVerticalPadding $menuHorizontalPadding;
           text-align: left;
           text-decoration: none;
-          // max-height: $menuHeight;
           color: $menuFontColor;
           background-color: $menuBgColor;
         }
 
         a:hover {
-          // max-height: $menuHeight;
           color: $menuFontHoverColor;
           background-color: $menuBgHoverColor;
         }
 
-        .active, a:hover.active {
-          // max-height: $menuHeight;
+        .current, a:hover.current {
           color: $menuFontActiveColor;
           background-color: $menuBgActiveColor;
         }
@@ -123,8 +133,9 @@ p {
     }
   }
 
-  .menubar-overlay {
+  .navbar-overlay {
     position: relative;
+    z-index: 2;
     width: 100%;
     max-width: $columnWidth;
     margin: 0 auto;
@@ -134,8 +145,8 @@ p {
       line-height: $menuLineHeight;
 
       display: block;
-      z-index: 0;
       position: absolute;
+      z-index: 0;
       top: 0;
       left: 0;
       user-select: none;
@@ -146,21 +157,99 @@ p {
 
     ul.overlay {
       position: absolute;
+      display: block;
       top: 0;
       right: 0;
 
       li {
         float: left;
-        max-height: $menuHeight;
+        height: auto;
         display: inline-block;
 
         img {
+          position: relative;
           cursor: pointer;
           width: $naviconSize;
           height: $naviconSize;
-          display: block;
           padding: $naviconVerticalPadding $menuHorizontalPadding;
+          display: block;
         }
+
+        .user-container {
+          position: relative;
+          display: block;
+
+          .usermenu {
+            position: absolute;
+            display: block;
+            top: $menuHeight + $userMenuSpacer;
+            right: $userMenuSpacer;
+            background-color: $userMenuBackgroundColor;
+            border-radius: 10px;
+            max-height: 0px;
+
+            a {
+              position: relative;
+              padding: 10px;
+              transition: 0ms;
+              color: $userMenuFontColor;
+              float: none;
+              display: block;
+              text-decoration: none;
+              white-space: nowrap;
+              opacity: 0;
+              pointer-events: none;
+            }
+
+            a:hover {
+              color: $userMenuFontHoverColor;
+            }
+          }
+
+          .arrow-up {
+            $halfArrowWidth: $userMenuArrowWidth / 2;
+            position: relative;
+            margin-top: -$userMenuArrowHeight;
+            margin-right: $menuHorizontalPadding + ($naviconSize - 10px) / 2 - $userMenuSpacer;
+            float: right;
+
+            // this makes an arrow
+            // see: https://css-tricks.com/snippets/css/css-triangle/
+            width: 0;
+            height: 0;
+            border-left: $halfArrowWidth solid transparent;
+            border-right: $halfArrowWidth solid transparent;
+            border-bottom: 0px solid transparent;
+          }
+
+          .items {
+            top: $menuHeight + $userMenuSpacer;
+            max-height: 0px;
+          }
+
+          &.show {
+
+            .usermenu {
+              transition: 300ms ease;
+              max-height: 500px;
+
+              a {
+                transition: opacity 300ms ease;
+                opacity: 1;
+                pointer-events: auto;
+              }
+            }
+
+            .arrow-up {
+              border-bottom: $userMenuArrowHeight solid $userMenuBackgroundColor;
+            }
+
+            .items {
+              max-height: 500px;
+            }
+          }
+
+        } // end .user-container
       }
     }
   }
@@ -171,11 +260,15 @@ p {
   .navbar {
     overflow: visible;
 
-    .menubar-mainmenu {
+    .navbar-mainmenu {
       width: auto;
 
-      ul.mainmenu li {
-        width: 100%; // THIS IS FOR MOBILE STYLE
+      ul.mainmenu {
+        top: $menuHeight;
+
+        li {
+          width: 100%; // THIS IS FOR MOBILE STYLE
+        }
       }
 
       opacity: 0;
@@ -183,28 +276,32 @@ p {
       transition: 0ms ease;
     }
 
-    .menubar-mainmenu.active {
+    &.active > .navbar-mainmenu {
       opacity: 1;
       transform: scale(1, 1);
       transition: 100ms ease;
     }
 
-    .menubar-overlay > .title { display: block; }
-    .menubar-overlay.active > .title { display: none; }
-    .navicon { display: block; }
+    .navbar-overlay > .title { display: block; }
+    &.active > .navbar-overlay > .title { display: none; }
+    .navicon-container { display: block; }
   }
 }
 
 //////////// for larger devices :
 @media only screen and (min-width : 501px) {
   .navbar {
-    overflow: hidden; // HIDE THIS FOR MOBILE STYLE
+    overflow: visible; // HIDE THIS FOR MOBILE STYLE // was hidden
 
-    .menubar-mainmenu {
+    .navbar-mainmenu {
       width: $columnWidth; // HIDE THIS FOR MOBILE STYLE
 
-      ul.mainmenu li {
-        width: auto;
+      ul.mainmenu {
+        top: 0;
+
+        li {
+          width: auto;
+        }
       }
 
       opacity: 1;
@@ -212,8 +309,8 @@ p {
       transition: 100ms ease;
     }
 
-    .menubar-overlay > .title { display: none; }
-    .navicon { display: none; }
+    .navbar-overlay > .title { display: none; }
+    .navicon-container { display: none; }
   }
 }
 

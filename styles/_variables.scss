@@ -29,10 +29,17 @@ $menuLineHeight: 20px;
 $menuVerticalPadding: 10px;
 $menuHorizontalPadding: 16px;
 
+$userMenuSpacer: 7px;
+$userMenuArrowWidth: 10px;
+$userMenuArrowHeight: 5px;
+// $userMenuBackgroundColor: rgba(255, 128, 0, 0.9);
+$userMenuFontColor: #ccc;
+$userMenuFontHoverColor: #eee;
+$userMenuBackgroundColor: rgba(55, 90, 120, 0.9);
+
 $naviconSize: 22px;
 $naviconVerticalPadding: $menuVerticalPadding - ($naviconSize - $menuLineHeight) * 0.5;
 
-// $menuHeight: $naviconSize + 2 * $naviconVerticalPadding;
 $menuHeight: $menuLineHeight + 2 * $menuVerticalPadding;
 
 //============================== CONTENTS ====================================//
