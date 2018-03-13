@@ -5,12 +5,12 @@ const main = {
     picture: null
   },
   editor: {
-    route: 'editor',
+    route: '/editor',
     text: 'Monitor',
     picture: null
   },
   truc: {
-    route: 'truc',
+    route: '/truc',
     text: 'Truc',
     picture: null
   }

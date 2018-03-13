@@ -1,4 +1,6 @@
+import path from 'path';
 import menus from './menus';
+import config from './config/default';
 
 // const userMenu = null;
 const userMenu = menus.user;
@@ -6,7 +8,7 @@ const userMenu = menus.user;
 
 const routes = {
   home: {
-    route: '/',
+    route: config.root,
     template: 'default',
     data: {
       logged: true,
@@ -20,7 +22,7 @@ const routes = {
     }
   },
   editor: {
-    route: '/editor',
+    route: path.join(config.root, 'editor'),
     template: 'default',
     data: {
       title: 'Monitor',
