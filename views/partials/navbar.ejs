@@ -6,7 +6,7 @@
       <% for (var item in data.menu) { %>
         <li role="menuitem">
 
-          <% var r = data.menu[item].route; %>
+          <% var r = data.root + data.menu[item].route; %>
           <a href="<%= r %>" class="<%= (route === r) ? 'current' : '' %>">
           <%= data.menu[item].text %>
           </a>
