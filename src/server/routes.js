@@ -8,7 +8,8 @@ const userMenu = menus.user;
 
 const routes = {
   home: {
-    route: config.root,
+    route: '/',
+    // route: config.root,
     template: 'default',
     data: {
       root: config.root,
@@ -23,8 +24,8 @@ const routes = {
     }
   },
   editor: {
-    // route: '/editor',
-    route: path.join(config.root, 'editor'),
+    route: '/editor',
+    // route: path.join(config.root, 'editor'),
     template: 'default',
     data: {
       root: config.root,
