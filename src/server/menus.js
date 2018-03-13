@@ -12,9 +12,9 @@ const main = {
     text: 'Monitor',
     picture: null
   },
-  truc: {
-    route: path.join(config.root, 'truc'),
-    text: 'Truc',
+  github: {
+    route: 'https://github.com/josephlarralde/express-playground',
+    text: 'GitHub',
     picture: null
   }
 };
