@@ -3,7 +3,7 @@ import config from './config/default';
 
 const main = {
   main: {
-    route: '/',
+    route: '',
     text: 'Blog',
     picture: null
   },
