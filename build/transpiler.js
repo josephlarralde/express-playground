@@ -43,6 +43,7 @@ function renderStyle(inputDir, outputDir) {
 //============================= EJS TEMPLATES ================================//
 
 // see: src/server/routes.js file
+// we assume a correct structure for a route : { data: { articles: strArray }}
 
 function loadHtmlContents(route) {
   if (Array.isArray(route.data.articles)) {

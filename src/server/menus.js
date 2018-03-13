@@ -1,5 +1,4 @@
 import path from 'path';
-import config from './config/default';
 
 const main = {
   main: {
@@ -32,11 +31,11 @@ const user = {
   },
   loggedOut: {
     signIn: {
-      route: '/#',
+      route: '#',
       text: 'Sign in',
     },
     logIn: {
-      route: '/#',
+      route: '#',
       text: 'Log in',
     }
   }

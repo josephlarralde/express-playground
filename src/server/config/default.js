@@ -1,10 +1,7 @@
 const config = {
   port: 3000,
-  // static: true,
-  // serverRoot: '',
-  serverRoot: '/express-playground',
-  // routes: ['main', 'parameters']
-  // etc
+  // serverRoot: '', // for local use
+  serverRoot: '/express-playground', // for e.g. gh-pages use
 };
 
 export default config;

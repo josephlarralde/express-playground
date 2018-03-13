@@ -1,11 +1,8 @@
 import path from 'path';
 import menus from './menus';
 
-// const userMenu = null;
 const mainMenu = menus.main;
 const userMenu = menus.user;
-
-function copy(obj) { return JSON.parse(JSON.stringify(obj)); }
 
 const routes = {
   home: {
@@ -17,11 +14,9 @@ const routes = {
       styles: [ 'main' ],
       scripts: [ 'main' ],
       format: 'articles',
-      articles: [ 'marwanarzanawar', 'blougoulf' ],
+      articles: [ 'static-website', 'blougoulf' ],
       menu: mainMenu,
       userMenu: userMenu,
-      // menu: copy(mainMenu),
-      // userMenu: copy(userMenu),
     }
   },
   editor: {
@@ -35,8 +30,6 @@ const routes = {
       articles: [ 'monitor' ],
       menu: mainMenu,
       userMenu: userMenu,
-      // menu: copy(mainMenu),
-      // userMenu: copy(userMenu),
     }
   },
   notfound: {
@@ -50,8 +43,6 @@ const routes = {
       articles: [ 'notfound' ],
       menu: mainMenu,
       userMenu: userMenu,
-      // menu: copy(mainMenu),
-      // userMenu: copy(userMenu),
     }
   }
 };
