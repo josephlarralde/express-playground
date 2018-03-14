@@ -82,80 +82,117 @@
       <div class="column">
         
           <div class="article">
-            <h2> installation </h2>
+            <p><h3> installation </h3></p>
 
-<p>
-  <ul>
-    <li>
-      clone this repository : <code>git clone https://github.com/josephlarralde/express-playground.git</code>
-    </li>
-    <li>
-      <code>cd</code> into the local copy
-    </li>
-    <li>
-      type <code>npm install</code> to install dependencies
-    </li>
-    <li>
-      run one of the following scripts :
-    </li>
-  </ul>
-</p>
+<ul>
+  <li>
+    clone this repository : <code>git clone https://github.com/josephlarralde/express-playground.git</code>
+  </li>
+  <li>
+    <code>cd</code> into the local copy
+  </li>
+  <li>
+    type <code>npm install</code> to install dependencies
+  </li>
+  <li>
+    do one of the following :
+    <ul>
+      <li>
+        type <code>npm run watch</code> or <code>npm run start</code>
+        and visit <code>http://localhost:8000</code>
+      </li>
+      <li>
+        type <code>npm run render</code>, <code>cd</code> into <code>docs</code>,
+        and run a simple http server like <code>http-server</code>, then visit the
+        served url and port
+        (<code>http://localhost:8080</code> by default with <code>http-server</code>).
+      </li>
+    </ul>
+  </li>
+</ul>
 
 
           </div>
         
           <div class="article">
-            <h2> scripts </h2>
+            <p><h3> npm scripts </h3></p>
 
-<p>
-  <ul>
-    <li>
-      <code>npm run watch</code> will transpile all es6 source code and browserify transpiled client code,
-      render styles, start the server, then run a watcher that will:
-      <ul>
-        <li>
-          transpile es6 source code on each modification in the <code>src/server</code> directory
-          then restart the server,
-        </li>
-        <li>
-          transpile es6 source code on each modification in the <code>src/client</code> directory
-          then browserify relevant <code>index.js</code> files,
-        </li>
-        <li>
-          generate new <code>css</code> files on each modification in the <code>styles</code> directory.
-        </li>
-      </ul>
-    </li>
-    <li>
-      <code>npm run start</code> will transpile all es6 source code and browserify transpiled client code,
-      render styles, then start the server.
-    </li>
-    <li>
-      <code>npm run render</code> will transpile all es6 source code and browserify transpiled client code,
-      render styles, then render all routes as static html files.
-    </li>
-  </ul>
-</p>
+<ul>
+  <li>
+    <code>npm run watch</code> will transpile all es6 source code and browserify transpiled client code,
+    render styles, start the server, then run a watcher that will:
+    <ul>
+      <li>
+        transpile es6 source code on each modification in the <code>src/server</code> directory
+        then restart the server,
+      </li>
+      <li>
+        transpile es6 source code on each modification in the <code>src/client</code> directory
+        then browserify relevant <code>index.js</code> files,
+      </li>
+      <li>
+        generate new <code>css</code> files on each modification in the <code>styles</code> directory.
+      </li>
+    </ul>
+  </li>
+  <li>
+    <code>npm run start</code> will transpile all es6 source code and browserify transpiled client code,
+    render styles, then start the server.
+  </li>
+  <li>
+    <code>npm run render</code> will transpile all es6 source code and browserify transpiled client code,
+    render styles, then render all routes as static html files.
+  </li>
+</ul>
+
           </div>
         
           <div class="article">
-            <h2> config </h2>
+            <p><h3> config </h3></p>
 
 <p>
-The server can be configured with a custom port and a server root path prefix.<br>
-The default config is defined in the <code>/src/server/config/default.js</code> file.<br>
-When using e.g. github pages for a particular repository, the serverRoot field
-needs to be set to <code>/&lt;repository_name&gt;</code>.
+A couple of configuration parameters must be defined in order for the npm scripts to do their job.
+These parameters are stored in files located in <code>src/server/config/</code>.
+The default config file is <code>default.js</code>, but if you look at the scripts section
+in <code>package.json</code>, you will see that you can specify an alternative config file
+by passing its filename without extension as the 4th argument to <code>build/index.js</code>:
 </p>
+
+<pre><code>"scripts": {
+  "watch": "node build/index.js watch",
+  "start": "node build/index.js start",
+  "render": "node build/index.js render github",
+  "test": "echo \"Error: no test specified\" && exit 1"
+},
+// ...
+</code></pre>
+
+<p>
+Here, the <code>github.js</code> file is use instead of the default config when running
+<code>npm run render</code>:
+</p>
+
+<pre><code>const config = {
+  title: '',
+  port: 3000,
+  serverRoot: '/express-playground',
+  publicDir: 'docs',
+};
+
+export default config;
+</code></pre>
+
           </div>
         
           <div class="article">
-            <h2> routes </h2>
+            <p><h3> routes </h3></p>
 
 <p>
 The main entry point to tweak the structure of the website is the
-<code>/src/server/routes.js</code> file.
-It begins like this <pre><code>import menus from './menus';
+<code>src/server/routes.js</code> file.
+It begins like this
+
+<pre><code>import menus from './menus';
 
 const mainMenu = menus.main;
 const userMenu = menus.user;
@@ -180,10 +217,10 @@ const routes = {
           </div>
         
           <div class="article">
-            <h2> menus </h2>
+            <p><h3> menus </h3></p>
 
 <p>
-The menu definitions are kept together in the <code>/src/server/menus.js</code> file.
+The menu definitions are kept together in the <code>src/server/menus.js</code> file.
 They are used by the routes to be rendered in the pages, and are structured in the following way :
 <pre><code>const main = {
   main: {
@@ -203,6 +240,22 @@ They are used by the routes to be rendered in the pages, and are structured in t
   }
 };
 </code></pre>
+          </div>
+        
+          <div class="article">
+            <p><h3> views </h3></p>
+
+<p>
+The main html template is the <code>views/default.ejs</code> file, providing a basic
+structure for a responsive website.
+</p>
+
+<p>
+In order to be rendered properly, it needs some
+parameters defined in the <code>src/server/route.js</code> and <code>src/server/menus.js</code> files,
+as well as some other parameters from one of the config files in <code>src/server/config/</code>.
+</p>
+
           </div>
         
       </div>
