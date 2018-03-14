@@ -31,6 +31,7 @@ const routes = {
         'documentation/config',
         'documentation/routes',
         'documentation/menus',
+        'documentation/views',
       ],
       menu: mainMenu,
       userMenu: userMenu,

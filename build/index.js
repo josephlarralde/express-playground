@@ -126,12 +126,11 @@ function start() {
 //* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * */
 
 function renderHtml() {
+  updatePublicDirTree();
   const routes = require('../dist/server/routes').default;
   logger.startTwirling();
 
-  updatePublicDirTree();
   transpiler.removeHtmlFiles(publicFiles);
-  console.log('about to transform route with config ' + inspect(config));
   transpiler.renderHtmlFiles(routes, clientPublicDir, config)
   .then(function() {
     logger.stopTwirling();
@@ -171,6 +170,7 @@ function watchSource() {
     updateClientDirTree();
     const file = getFileFromFilename(f, clientFiles);
     logger.startTwirling();
+
     transpiler.transpileFile(file, clientSrcDir, clientDistDir)
     .then(function() {
       transpiler.bundleFileAndParents(file, clientSrcDir, clientDistDir, javaScriptDir);
