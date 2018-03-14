@@ -1,0 +1,27 @@
+<h2> Routes </h2>
+
+<p>
+The main entry point to tweak the structure of the website is the
+<code>/src/server/routes.js</code> file.
+It begins like this <pre><code>import menus from './menus';
+
+const mainMenu = menus.main;
+const userMenu = menus.user;
+
+const routes = {
+  home: {
+    route: '/',
+    template: 'default',
+    data: {
+      title: 'About',
+      styles: [ 'main' ],
+      scripts: [ 'main' ],
+      format: 'articles',
+      articles: [ 'about/presentation' ],
+      menu: mainMenu,
+      userMenu: userMenu,
+    }
+  },
+  // ...
+</code></pre>
+</p>

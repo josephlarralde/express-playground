@@ -1,32 +1,36 @@
-import path from 'path';
 import menus from './menus';
 
 const mainMenu = menus.main;
-const userMenu = menus.user;
+const userMenu = null; // menus.user;
 
 const routes = {
   home: {
     route: '/',
     template: 'default',
     data: {
-      title: 'Blog',
+      title: 'About',
       styles: [ 'main' ],
       scripts: [ 'main' ],
       format: 'articles',
-      articles: [ 'static-website' ],
+      articles: [ 'about/presentation' ],
       menu: mainMenu,
       userMenu: userMenu,
     }
   },
   editor: {
-    route: '/editor',
+    route: '/documentation',
     template: 'default',
     data: {
-      title: 'Monitor',
+      title: 'Documentation',
       styles: [ 'main' ],
       scripts: [ 'main' ],
-      format: 'raw',
-      articles: [ 'monitor' ],
+      format: 'articles',
+      articles: [
+        'documentation/scripts',
+        'documentation/config',
+        'documentation/routes',
+        'documentation/menus',
+      ],
       menu: mainMenu,
       userMenu: userMenu,
     }

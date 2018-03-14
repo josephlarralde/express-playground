@@ -3,12 +3,12 @@ import path from 'path';
 const main = {
   main: {
     route: '/',
-    text: 'Blog',
+    text: 'About',
     picture: null
   },
   editor: {
-    route: '/editor',
-    text: 'Monitor',
+    route: '/documentation',
+    text: 'Doc',
     picture: null
   },
   github: {

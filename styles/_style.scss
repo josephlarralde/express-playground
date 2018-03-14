@@ -19,9 +19,7 @@ body {
   line-height: $lineHeight;
   font-family: LatoLatinoWeb, "Helvetica Neue", Helvetica, Arial, sans-serif;
 
-  // scroll-snap-type: proximity;
-  // scroll-snap-coordinate: 0 $bannerHeight;
-  // scroll-snap-destination: 0 0px;
+  overflow-x: hidden;
 }
 
 h1, h2, h3, h4, h5, h6 {
@@ -34,9 +32,16 @@ p {
   padding-bottom: 10px;
 }
 
+pre {
+  background-color: #ddd;
+  margin: 0;
+  padding: 2px;
+  word-wrap: break-word;
+}
+
 code {
   background-color: #ddd;
-  padding: 3px;
+  padding: 1px;
 }
 
 /* * * * * * * * * * * * * * * * * * BANNER * * * * * * * * * * * * * * * * * */
@@ -56,15 +61,25 @@ code {
   }
 
   .banner-container {
-    z-index: 3;
+    z-index: 0;
     width: 100%;
     height: inherit;
     overflow: hidden;
+
+    div.title {
+      h1, h2, h3, h4, h5, h6 {
+        font-family: courier;
+        position: absolute;
+        z-index: 3;
+        color: rgba(255, 255, 255, 0.9);
+        padding: 20px;
+      }
+    }
   }
 
   canvas {
-    z-index: 2;
     position: relative;
+    z-index: 2;
     top: 0;
     padding: 0;
     margin: 0;
@@ -253,7 +268,6 @@ code {
               max-height: 500px;
             }
           }
-
         } // end .user-container
       }
     }
@@ -343,7 +357,7 @@ code {
   padding: 0px 0px $containerPaddingBottom 0px;
 
   .column {
-    padding: 10px;
+    // padding: 10px;
     min-height: 100%;
 
     a {
@@ -364,17 +378,14 @@ code {
     // text-align: justify;
     display: block;
     width: auto;
-    padding: 0px 10px 0px 10px;
+    // padding: 0px 10px 0px 10px;
+    padding: 10px;
     clear: both;
     //background-color: #ddd;
 
     ul {
       margin-left: 20px;
     }
-  }
-
-  p {
-    margin-bottom: 10px;
   }
 }
 

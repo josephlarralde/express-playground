@@ -201,9 +201,10 @@ body {
   color: #000;
   background-color: #fff;
   font-style: normal;
-  font-size: 16px;
-  line-height: 18px;
-  font-family: LatoLatinoWeb, "Helvetica Neue", Helvetica, Arial, sans-serif; }
+  font-size: 15px;
+  line-height: 20px;
+  font-family: LatoLatinoWeb, "Helvetica Neue", Helvetica, Arial, sans-serif;
+  overflow-x: hidden; }
 
 h1, h2, h3, h4, h5, h6 {
   color: #000;
@@ -213,9 +214,15 @@ h1, h2, h3, h4, h5, h6 {
 p {
   padding-bottom: 10px; }
 
+pre {
+  background-color: #ddd;
+  margin: 0;
+  padding: 2px;
+  word-wrap: break-word; }
+
 code {
   background-color: #ddd;
-  padding: 3px; }
+  padding: 1px; }
 
 /* * * * * * * * * * * * * * * * * * BANNER * * * * * * * * * * * * * * * * * */
 .banner {
@@ -228,13 +235,19 @@ code {
   .banner.hidden {
     height: 0px; }
   .banner .banner-container {
-    z-index: 3;
+    z-index: 0;
     width: 100%;
     height: inherit;
     overflow: hidden; }
+    .banner .banner-container div.title h1, .banner .banner-container div.title h2, .banner .banner-container div.title h3, .banner .banner-container div.title h4, .banner .banner-container div.title h5, .banner .banner-container div.title h6 {
+      font-family: courier;
+      position: absolute;
+      z-index: 3;
+      color: rgba(255, 255, 255, 0.9);
+      padding: 20px; }
   .banner canvas {
-    z-index: 2;
     position: relative;
+    z-index: 2;
     top: 0;
     padding: 0;
     margin: 0;
@@ -410,13 +423,13 @@ code {
 
 /* * * * * * * * * * * * * * * * * * ARTICLES * * * * * * * * * * * * * * * * */
 .banner + .navbar + .container {
-  padding: 130px 0px 40px 0px; }
+  padding: 130px 0px 0px 0px; }
 
 .banner + .container {
-  padding: 90px 0px 40px 0px; }
+  padding: 90px 0px 0px 0px; }
 
 .navbar + .container {
-  padding: 40px 0px 40px 0px; }
+  padding: 40px 0px 0px 0px; }
 
 .container {
   position: relative;
@@ -424,9 +437,8 @@ code {
   width: auto;
   max-width: 800px;
   margin: auto;
-  padding: 0px 0px 40px 0px; }
+  padding: 0px 0px 0px 0px; }
   .container .column {
-    padding: 10px;
     min-height: 100%; }
     .container .column a {
       text-decoration: none;
@@ -439,12 +451,10 @@ code {
     word-wrap: break-word;
     display: block;
     width: auto;
-    padding: 0px 10px 0px 10px;
+    padding: 10px;
     clear: both; }
     .container .article ul {
       margin-left: 20px; }
-  .container p {
-    margin-bottom: 10px; }
 
 /* * * * * * * * * * * * * * * * * PORTFOLIO * * * * * * * * * * * * * * * * */
 a .responsive-square-item-content {

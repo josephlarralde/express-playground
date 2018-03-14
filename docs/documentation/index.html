@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1">
+
+  <title> Documentation </title>
+
+  
+    <link rel="stylesheet" type="text/css" href="/express-playground/css/main.css">
+  
+
+  
+    <script type="text/javascript" src="/express-playground/js/main/index.js"></script>
+  
+</head>
+
+
+<body class="/express-playground/documentation">
+  <div class="banner">
+  <div class="banner-container">
+    <div class="title"> <h2> express playground </h2> </div>
+    <canvas class="banner-canvas" width="800" height="100"></canvas>
+  </div>
+</div>
+
+  <div class="navbar">
+
+  <div class="navbar-mainmenu">
+    <ul class="mainmenu" role="menubar">
+
+      
+        <li role="menuitem">
+          
+          <a href="/express-playground/" class="">
+            About
+          </a>
+        </li>
+      
+        <li role="menuitem">
+          
+          <a href="/express-playground/documentation" class="current">
+            Doc
+          </a>
+        </li>
+      
+        <li role="menuitem">
+          
+          <a href="https://github.com/josephlarralde/express-playground" class="">
+            GitHub
+          </a>
+        </li>
+      
+    </ul>
+  </div>
+
+  <div class="navbar-overlay">
+    <div class="title">Documentation</div>
+
+    <ul class="overlay" role="menubar">
+
+      
+
+      <li role="menuitem">
+
+        <div class="navicon-container">
+          <img id="navicon" src="/express-playground/navicon.png">
+        </div>
+
+      </li>
+    </ul>
+  </div>
+
+</div>
+
+
+  <div class="container">
+
+  
+
+      <div class="column">
+        
+          <div class="article">
+            <h2> Scripts </h2>
+
+<p>
+  This project comes with a bunch of npm scripts:
+  <ul>
+    <li> <code>npm run watch</code> </li>
+    <li> <code>npm run start</code> </li>
+    <li> <code>npm run render</code> </li>
+  </ul>
+</p>
+          </div>
+        
+          <div class="article">
+            <h2> Config </h2>
+
+<p>
+The server can be configured with a custom port and a server root path prefix.<br>
+The default config is defined in the <code>/src/server/config/default.js</code> file.<br>
+When using e.g. github pages for a particular repository, the serverRoot field
+needs to be set to <code>/&lt;repository_name&gt;</code>.
+</p>
+          </div>
+        
+          <div class="article">
+            <h2> Routes </h2>
+
+<p>
+The main entry point to tweak the structure of the website is the
+<code>/src/server/routes.js</code> file.
+It begins like this <pre><code>import menus from './menus';
+
+const mainMenu = menus.main;
+const userMenu = menus.user;
+
+const routes = {
+  home: {
+    route: '/',
+    template: 'default',
+    data: {
+      title: 'About',
+      styles: [ 'main' ],
+      scripts: [ 'main' ],
+      format: 'articles',
+      articles: [ 'about/presentation' ],
+      menu: mainMenu,
+      userMenu: userMenu,
+    }
+  },
+  // ...
+</code></pre>
+</p>
+          </div>
+        
+          <div class="article">
+            <h2> Menus </h2>
+
+<p>
+The menu definitions are kept together in the <code>/src/server/menus.js</code> file.
+They are used by the routes to be rendered in the pages, and are structured in the following way :
+<pre><code>const main = {
+  main: {
+    route: '/',
+    text: 'About',
+    picture: null
+  },
+  editor: {
+    route: '/documentation',
+    text: 'Doc',
+    picture: null
+  },
+  github: {
+    route: 'https://github.com/josephlarralde/express-playground',
+    text: 'GitHub',
+    picture: null
+  }
+};
+</code></pre>
+          </div>
+        
+      </div>
+
+  
+
+</div>
+
+
+  <!-- <footer class="footer">
+  <div>
+    <p>SOMETHING - &copy; NOBODY</p>
+  </div>
+</footer> -->
+</body>
+
+</html>
