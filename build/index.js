@@ -1,6 +1,7 @@
 const fs = require('fs-extra');
 const path = require('path');
 const watch = require('watch');
+const uglify = require('uglify-js');
 
 const util = require('./util');
 const transpiler = require('./transpiler');
@@ -125,12 +126,12 @@ function start() {
 //* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * */
 
 function renderHtml() {
-  const config = require('../dist/server/config/default').default;
   const routes = require('../dist/server/routes').default;
   logger.startTwirling();
 
   updatePublicDirTree();
   transpiler.removeHtmlFiles(publicFiles);
+  console.log('about to transform route with config ' + inspect(config));
   transpiler.renderHtmlFiles(routes, clientPublicDir, config)
   .then(function() {
     logger.stopTwirling();
