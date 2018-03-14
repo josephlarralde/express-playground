@@ -423,13 +423,13 @@ code {
 
 /* * * * * * * * * * * * * * * * * * ARTICLES * * * * * * * * * * * * * * * * */
 .banner + .navbar + .container {
-  padding: 130px 0px 0px 0px; }
+  padding: 130px 0px 10px 0px; }
 
 .banner + .container {
-  padding: 90px 0px 0px 0px; }
+  padding: 90px 0px 10px 0px; }
 
 .navbar + .container {
-  padding: 40px 0px 0px 0px; }
+  padding: 40px 0px 10px 0px; }
 
 .container {
   position: relative;
@@ -437,7 +437,7 @@ code {
   width: auto;
   max-width: 800px;
   margin: auto;
-  padding: 0px 0px 0px 0px; }
+  padding: 0px 0px 10px 0px; }
   .container .column {
     min-height: 100%; }
     .container .column a {
