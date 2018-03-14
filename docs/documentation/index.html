@@ -8,16 +8,16 @@
   <title> Documentation </title>
 
   
-    <link rel="stylesheet" type="text/css" href="/express-playground/css/main.css">
+    <link rel="stylesheet" type="text/css" href="/css/main.css">
   
 
   
-    <script type="text/javascript" src="/express-playground/js/main/index.js"></script>
+    <script type="text/javascript" src="/js/main/index.js"></script>
   
 </head>
 
 
-<body class="/express-playground/documentation">
+<body class="/documentation">
   <div class="banner">
   <div class="banner-container">
     <div class="title"> <h2>  </h2> </div>
@@ -33,14 +33,14 @@
       
         <li role="menuitem">
           
-          <a href="/express-playground/" class="">
+          <a href="/" class="">
             About
           </a>
         </li>
       
         <li role="menuitem">
           
-          <a href="/express-playground/documentation" class="current">
+          <a href="/documentation" class="current">
             Doc
           </a>
         </li>
@@ -65,7 +65,7 @@
       <li role="menuitem">
 
         <div class="navicon-container">
-          <img id="navicon" src="/express-playground/navicon.png">
+          <img id="navicon" src="/navicon.png">
         </div>
 
       </li>
@@ -82,20 +82,64 @@
       <div class="column">
         
           <div class="article">
-            <h2> Scripts </h2>
+            <h2> installation </h2>
 
 <p>
-  This project comes with a bunch of npm scripts:
   <ul>
-    <li> <code>npm run watch</code> </li>
-    <li> <code>npm run start</code> </li>
-    <li> <code>npm run render</code> </li>
+    <li>
+      clone this repository : <code>git clone https://github.com/josephlarralde/express-playground.git</code>
+    </li>
+    <li>
+      <code>cd</code> into the local copy
+    </li>
+    <li>
+      type <code>npm install</code> to install dependencies
+    </li>
+    <li>
+      run one of the following scripts :
+    </li>
+  </ul>
+</p>
+
+
+          </div>
+        
+          <div class="article">
+            <h2> scripts </h2>
+
+<p>
+  <ul>
+    <li>
+      <code>npm run watch</code> will transpile all es6 source code and browserify transpiled client code,
+      render styles, start the server, then run a watcher that will:
+      <ul>
+        <li>
+          transpile es6 source code on each modification in the <code>src/server</code> directory
+          then restart the server,
+        </li>
+        <li>
+          transpile es6 source code on each modification in the <code>src/client</code> directory
+          then browserify relevant <code>index.js</code> files,
+        </li>
+        <li>
+          generate new <code>css</code> files on each modification in the <code>styles</code> directory.
+        </li>
+      </ul>
+    </li>
+    <li>
+      <code>npm run start</code> will transpile all es6 source code and browserify transpiled client code,
+      render styles, then start the server.
+    </li>
+    <li>
+      <code>npm run render</code> will transpile all es6 source code and browserify transpiled client code,
+      render styles, then render all routes as static html files.
+    </li>
   </ul>
 </p>
           </div>
         
           <div class="article">
-            <h2> Config </h2>
+            <h2> config </h2>
 
 <p>
 The server can be configured with a custom port and a server root path prefix.<br>
@@ -106,7 +150,7 @@ needs to be set to <code>/&lt;repository_name&gt;</code>.
           </div>
         
           <div class="article">
-            <h2> Routes </h2>
+            <h2> routes </h2>
 
 <p>
 The main entry point to tweak the structure of the website is the
@@ -136,7 +180,7 @@ const routes = {
           </div>
         
           <div class="article">
-            <h2> Menus </h2>
+            <h2> menus </h2>
 
 <p>
 The menu definitions are kept together in the <code>/src/server/menus.js</code> file.

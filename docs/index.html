@@ -8,16 +8,16 @@
   <title> About </title>
 
   
-    <link rel="stylesheet" type="text/css" href="/express-playground/css/main.css">
+    <link rel="stylesheet" type="text/css" href="/css/main.css">
   
 
   
-    <script type="text/javascript" src="/express-playground/js/main/index.js"></script>
+    <script type="text/javascript" src="/js/main/index.js"></script>
   
 </head>
 
 
-<body class="/express-playground/">
+<body class="/">
   <div class="banner">
   <div class="banner-container">
     <div class="title"> <h2>  </h2> </div>
@@ -33,14 +33,14 @@
       
         <li role="menuitem">
           
-          <a href="/express-playground/" class="current">
+          <a href="/" class="current">
             About
           </a>
         </li>
       
         <li role="menuitem">
           
-          <a href="/express-playground/documentation" class="">
+          <a href="/documentation" class="">
             Doc
           </a>
         </li>
@@ -65,7 +65,7 @@
       <li role="menuitem">
 
         <div class="navicon-container">
-          <img id="navicon" src="/express-playground/navicon.png">
+          <img id="navicon" src="/navicon.png">
         </div>
 
       </li>
@@ -82,13 +82,45 @@
       <div class="column">
         
           <div class="article">
-            <h2> Express playground </h2>
+            <h1> express-playground </h1>
+<p>
+  <h3> starter project for express based websites </h3>
+</p>
 
 <p>
   This website has been built with
   <a href="https://github.com/josephlarralde/express-playground">
     express-playground
-  </a> using the <code>npm run render</code> command.
+  </a> using the <code>npm run render</code> command (see Documentation).
+</p>
+
+<p>
+This project is written in es6 and uses <code>babel</code> to transpile all the source code.
+It also uses <code>browserify</code> to bundle all the transpiled client code, <code>node-sass</code>
+to generate the <code>css</code> files, and the <code>ejs</code> template engine for rendering html.
+</p>
+
+<p>
+It can be used as a tool to build static html websites like this one, or it can
+run a basic express server that can be customized to fulfill some requirements.
+</p>
+
+<p>
+The main html template is the <code>views/default.ejs</code> file, providing the basic
+structure of a responsive website.
+</p>
+
+<p>
+The main entry point to modify the architecture of the website is the <code>src/server/routes.js</code> file.
+Each route specifies its own <code>ejs</code> template file, as well as relevant data to populate it.
+</p>
+
+<p>
+When using the <code>default.ejs</code> template, the relevant data includes html contents,
+specified in the <code>data.articles</code> field, which will be looked for in the `contents` directory.
+It also includes the menu definition, specified in the <code>data.menu</code> field.
+The menu designed to be used with the <code>default.ejs</code> template is defined in the <code>src/server/menus.js</code> file,
+and is referenced as <code>main</code>.
 </p>
           </div>
         

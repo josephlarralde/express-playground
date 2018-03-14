@@ -452,6 +452,7 @@ code {
     display: block;
     width: auto;
     padding: 10px;
+    padding-bottom: 0;
     clear: both; }
     .container .article ul {
       margin-left: 20px; }
