@@ -6,9 +6,10 @@ const fork = childProcess.fork;
 const spawn = childProcess.spawn;
 const exec = childProcess.exec;
 
-function MyServer(serverIndexPath) {
+function MyServer(serverIndexPath, config) {
   this.serverIndexPath = serverIndexPath;
   this.server = null;
+  this.config = config;
 };
 
 MyServer.prototype.start = function() {
@@ -18,7 +19,8 @@ MyServer.prototype.start = function() {
   // this.errChunks = [];
   // const that = this;
 
-  this.server = fork(this.serverIndexPath, {
+  this.server = fork(this.serverIndexPath, [], {
+    env: this.config,
     // leave default values (comment out stdio) and comment out this.server's
     // stderr / stdout .on('data') callbacks to let the child process pipe its
     // output to the main console :

@@ -7,11 +7,10 @@ import compression from 'compression';
 import express from 'express';
 
 import routes from './routes';
-import config from './config/default';
 
 const cwd = process.cwd();
-const port = process.env.PORT || config.port;
-const publicDir = process.argv.length > 3 ? process.argv[3] : 'public';
+const port = process.env.port || 3000;
+const publicDir = process.env.publicDir || 'public';
 
 const app = express();
 
@@ -44,7 +43,7 @@ function render(res, route) {
 };
 
 for (let r in routes) {
-  routes[r].config = config;
+  routes[r].config = process.env;
   app.get(routes[r]['route'], function (req, res) {
     render(res, routes[r]);
   });

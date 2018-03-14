@@ -16,11 +16,14 @@ const getFileFromFilename = util.getFileFromFilename;
 
 //================================== PATHS ===================================//
 
-let clientPublicDir = 'public';
+let configName = 'default';
 
 if (process.argv.length > 3) {
-  clientPublicDir = process.argv[3];
+  configName = process.argv[3];
 }
+
+const config = require(path.join('../dist/server/config', configName)).default;
+const clientPublicDir = config.publicDir;
 
 const sassDir = 'styles';
 const clientSrcDir = 'src/client';
@@ -33,7 +36,7 @@ const serverSrcDir = 'src/server';
 const serverDistDir = 'dist/server';
 const serverIndexPath = 'dist/server/index.js';
 
-const server = new MyServer(serverIndexPath);
+const server = new MyServer(serverIndexPath, config);
 
 //======================== FOLDER STRUCTURE HOLDERS ==========================//
 

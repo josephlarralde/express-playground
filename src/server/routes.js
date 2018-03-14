@@ -26,6 +26,7 @@ const routes = {
       scripts: [ 'main' ],
       format: 'articles',
       articles: [
+        'documentation/install',
         'documentation/scripts',
         'documentation/config',
         'documentation/routes',
