@@ -1,26 +1,19 @@
 <h1> express-playground </h1>
-<p>
-  <h3> starter project for express based websites </h3>
-</p>
+<p><h3> starter project for express based websites </h3></p>
 
 <p>
-  This website has been built with
-  <a href="https://github.com/josephlarralde/express-playground">
-    express-playground
-  </a> using the <code>npm run render</code> command (see Documentation).
-</p>
-
-<p>
-This project is written in es6 and uses <code>babel</code> to transpile all the source code.
+The express-playground project is written in es6 and uses <code>babel</code> to transpile all its source code.
 It also uses <code>browserify</code> to bundle all the transpiled client code, <code>node-sass</code>
-to generate the <code>css</code> files, and the <code>ejs</code> template engine for rendering html.
+to generate the css files, and the <code>ejs</code> template engine for rendering html.
 </p>
 
 <p>
-It can be used as a tool to build static html websites like this one, or it can
-run a basic express server that can be customized to fulfill some requirements.
+The <code>npm run watch</code> and <code>npm run start</code> commands allow for
+serving the website by running a basic <code>express</code> server which can be customized later on.
+The <code>npm run render</code> command renders a static html website like this one.
 </p>
 
+<!--
 <p>
 The main html template is the <code>views/default.ejs</code> file, providing the basic
 structure of a responsive website.
@@ -30,11 +23,4 @@ structure of a responsive website.
 The main entry point to modify the architecture of the website is the <code>src/server/routes.js</code> file.
 Each route specifies its own <code>ejs</code> template file, as well as relevant data to populate it.
 </p>
-
-<p>
-When using the <code>default.ejs</code> template, the relevant data includes html contents,
-specified in the <code>data.articles</code> field, which will be looked for in the `contents` directory.
-It also includes the menu definition, specified in the <code>data.menu</code> field.
-The menu designed to be used with the <code>default.ejs</code> template is defined in the <code>src/server/menus.js</code> file,
-and is referenced as <code>main</code>.
-</p>
+-->

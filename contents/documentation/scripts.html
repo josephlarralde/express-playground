@@ -1,31 +1,29 @@
-<h2> scripts </h2>
+<p><h3> npm scripts </h3></p>
 
-<p>
-  <ul>
-    <li>
-      <code>npm run watch</code> will transpile all es6 source code and browserify transpiled client code,
-      render styles, start the server, then run a watcher that will:
-      <ul>
-        <li>
-          transpile es6 source code on each modification in the <code>src/server</code> directory
-          then restart the server,
-        </li>
-        <li>
-          transpile es6 source code on each modification in the <code>src/client</code> directory
-          then browserify relevant <code>index.js</code> files,
-        </li>
-        <li>
-          generate new <code>css</code> files on each modification in the <code>styles</code> directory.
-        </li>
-      </ul>
-    </li>
-    <li>
-      <code>npm run start</code> will transpile all es6 source code and browserify transpiled client code,
-      render styles, then start the server.
-    </li>
-    <li>
-      <code>npm run render</code> will transpile all es6 source code and browserify transpiled client code,
-      render styles, then render all routes as static html files.
-    </li>
-  </ul>
-</p>
+<ul>
+  <li>
+    <code>npm run watch</code> will transpile all es6 source code and browserify transpiled client code,
+    render styles, start the server, then run a watcher that will:
+    <ul>
+      <li>
+        transpile es6 source code on each modification in the <code>src/server</code> directory
+        then restart the server,
+      </li>
+      <li>
+        transpile es6 source code on each modification in the <code>src/client</code> directory
+        then browserify relevant <code>index.js</code> files,
+      </li>
+      <li>
+        generate new <code>css</code> files on each modification in the <code>styles</code> directory.
+      </li>
+    </ul>
+  </li>
+  <li>
+    <code>npm run start</code> will transpile all es6 source code and browserify transpiled client code,
+    render styles, then start the server.
+  </li>
+  <li>
+    <code>npm run render</code> will transpile all es6 source code and browserify transpiled client code,
+    render styles, then render all routes as static html files.
+  </li>
+</ul>
