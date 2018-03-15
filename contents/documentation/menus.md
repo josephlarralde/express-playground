@@ -1,9 +1,10 @@
-<p><h3> menus </h3></p>
+### menus
 
-<p>
-The menu definitions are kept together in the <code>src/server/menus.js</code> file.
-They are used by the routes to be rendered in the pages, and are structured in the following way :
-<pre><code>const main = {
+The menu definitions are kept together in the `src/server/menus.js` file.
+They are used by the routes to be rendered in the pages, and are structured in the following way:
+
+```
+const main = {
   main: {
     route: '/',
     text: 'About',
@@ -20,4 +21,4 @@ They are used by the routes to be rendered in the pages, and are structured in t
     picture: null
   }
 };
-</code></pre>
+```

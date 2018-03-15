@@ -1,11 +1,9 @@
-<p><h3> routes </h3></p>
+### routes
 
-<p>
-The main entry point to tweak the structure of the website is the
-<code>src/server/routes.js</code> file.
-It begins like this
+The main entry point to tweak the structure of the website is the `src/server/routes.js` file.
 
-<pre><code>import menus from './menus';
+```
+import menus from './menus';
 
 const mainMenu = menus.main;
 const userMenu = menus.user;
@@ -25,5 +23,4 @@ const routes = {
     }
   },
   // ...
-</code></pre>
-</p>
+```
