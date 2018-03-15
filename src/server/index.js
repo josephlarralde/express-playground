@@ -25,20 +25,7 @@ const server = http.createServer(app).listen(port, function () {
   console.log('Server started: http://127.0.0.1:' + port);
 });
 
-function loadContents(route) {
-  if (Array.isArray(route.data.articles)) {
-    const a = route.data.articles;
-    route.data.contents = [];
-
-    for (let i = 0; i < a.length; i++) {
-      const filepath = path.join(cwd, 'contents', a[i] + '.html');
-      route.data.contents.push(fs.readFileSync(filepath));
-    }
-  }
-};
-
 function render(res, route) {
-  loadContents(route);
   return res.render(route.template, route);
 };
 
