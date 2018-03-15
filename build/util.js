@@ -19,7 +19,7 @@ function filterExtensions(extensions) {
   return function(file) {
     // const ext = extensions;
     const regex = new RegExp(`^(.+\\.(${extensions.join('|')})|[^\\.]*)$`);
-    return validateExtensions.test(file);
+    return regex.test(file);
   }
 };
 

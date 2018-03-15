@@ -1,6 +1,9 @@
+const marked = require('marked');
+const mustache = require('mustache');
 const sass = require('node-sass');
 const babel = require('babel-core');
 const browserify = require('browserify');
+const uglify = require('uglify-js');
 const ejs = require('ejs');
 const fs = require('fs-extra');
 const path = require('path');
@@ -42,6 +45,70 @@ function renderStyle(inputDir, outputDir) {
 
 //============================= EJS TEMPLATES ================================//
 
+//======================== RENDER EJS FROM MARKDOWN ==========================//
+
+function renderEjsFileFromMarkdown(inputFile, inputDir, outputDir, data) {
+  return new Promise(function(resolve, reject) {
+    if (inputFile.type === 'file') {
+      let outputFilepath = inputFile.path.replace(inputDir, outputDir);
+      outputFilepath = outputFilepath.replace('.md', '.ejs');
+      const task = `converting file ${inputFile.path} to ${outputFilepath}`;
+      logger.notifyStartTask(task);
+
+      marked(fs.readFileSync(inputFile.path, 'utf-8'), {
+        // some options ?
+        sanitize: false,
+        smartlists: true,
+      }, function(err, res) {
+        if (err !== null) {
+          logger.notifyTaskError(task, err);
+        } else {
+          const html = mustache.render(res, data);
+          fs.ensureFileSync(outputFilepath);
+          fs.writeFileSync(outputFilepath, html);
+        }
+        resolve();
+      });
+    } else {
+      logger.notifyTaskError(task, 'bad file format');
+    }
+  });
+}
+
+function renderEjsFilesFromMarkdownImpl(inputFiles, inputDir, outputDir, data, promises = []) {
+  if (inputFiles.type === 'file') {
+    let outputFilepath = inputFiles.path.replace(inputDir, outputDir);
+    outputFilepath = outputFilepath.replace('.md', '.ejs');
+    const task = `converting file ${inputFiles.path} to ${outputFilepath}`;
+    logger.notifyStartTask(task);
+
+    promises.push(new Promise(function(resolve, reject) {
+      marked(fs.readFileSync(inputFiles.path, 'utf-8'), function(err, res) {
+        if (err !== null) {
+          logger.notifyTaskError(task, err);
+        } else {
+          const html = mustache.render(res, data);
+          fs.ensureFileSync(outputFilepath);
+          fs.writeFileSync(outputFilepath, html);
+        }
+        resolve();
+      });
+    }));
+  } else if (inputFiles.type === 'folder' && inputFiles.children) {
+    for (let i = 0; i < inputFiles.children.length; i++) {
+      renderEjsFilesFromMarkdownImpl(inputFiles.children[i], inputDir, outputDir, data, promises);
+    }
+  }
+}
+
+function renderEjsFilesFromMarkdown(inputFiles, inputDir, outputDir, data) {
+  const renderPromises = [];
+  renderEjsFilesFromMarkdownImpl(inputFiles, inputDir, outputDir, data, renderPromises);
+  return Promise.all(renderPromises);
+}
+
+//========================== RENDER HTML FROM EJS ============================//
+
 // see: src/server/routes.js file
 // we assume a correct structure for a route : { data: { articles: strArray }}
 
@@ -80,7 +147,7 @@ function renderHtmlFile(route, outputDir, config) {
     const task = `rendering file ${outputFilepath}`
     logger.notifyStartTask(task);
     transformRouteNames(route, config);
-    loadHtmlContents(route);
+    // loadHtmlContents(route);
 
     const templatePath = path.join('views', `${route.template}.ejs`);
 
@@ -108,7 +175,7 @@ function renderHtmlFiles(routes, outputDir, config) {
 }
 
 function removeHtmlFiles(inputFiles) {
-  if (inputFiles.type === 'file' && path.extname(inputFiles.path) === '.html') {
+  if (inputFiles.type === 'file' /* && path.extname(inputFiles.path) === '.html' */) {
     fs.removeSync(inputFiles.path);
   } else if (inputFiles.type === 'folder' && inputFiles.children) {
     for (let i = 0; i < inputFiles.children.length; i++) {
@@ -282,6 +349,8 @@ function bundleFileAndParents(changedFile, srcDir, distDir, bundleDir) {
 
 module.exports = {
   renderStyle,
+  renderEjsFileFromMarkdown,
+  renderEjsFilesFromMarkdown,
   renderHtmlFiles,
   removeHtmlFiles,
   transpileFile,

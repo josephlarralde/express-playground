@@ -17,6 +17,8 @@
     "ejs": "^2.5.7",
     "express": "^4.16.2",
     "fs-extra": "^5.0.0",
+    "marked": "^0.3.17",
+    "mustache": "^2.3.0",
     "serve-favicon": "^2.4.5",
     "uglify-js": "^3.3.14"
   },

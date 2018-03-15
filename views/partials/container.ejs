@@ -4,9 +4,9 @@
     case 'articles': { %>
 
       <div class="column">
-        <% for (let a in data.contents) { %>
+        <% for (var a in data.articles) { %>
           <div class="article">
-            <%- data.contents[a] %>
+            <%- include(`../contents/${data.articles[a]}`, {})%>
           </div>
         <% } %>
       </div>
@@ -14,8 +14,8 @@
   <% } break;
     case 'raw': { %>
 
-      <% for (let a in data.contents) { %>
-        <%- data.contents[a] %>
+      <% for (var a in data.articles) { %>
+        <%- include(`../contents/${data.articles[a]}`, {})%>
       <% } %>
 
   <% } break;

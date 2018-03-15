@@ -1,7 +1,6 @@
 const fs = require('fs-extra');
 const path = require('path');
 const watch = require('watch');
-const uglify = require('uglify-js');
 
 const util = require('./util');
 const transpiler = require('./transpiler');
@@ -17,33 +16,37 @@ const getFileFromFilename = util.getFileFromFilename;
 
 //================================== PATHS ===================================//
 
-let configName = 'default';
-
-if (process.argv.length > 3) {
-  configName = process.argv[3];
-}
-
-const config = require(path.join('../dist/server/config', configName)).default;
-const clientPublicDir = config.publicDir;
+let clientPublicDir;
+let cssDir;
+let javaScriptDir;
 
 const sassDir = 'styles';
+const viewsDir = 'views';
+const contentsDir = 'contents';
+const contentsOutputDir = 'views/contents';
+
 const clientSrcDir = 'src/client';
 const clientDistDir = 'dist/client';
-
-const cssDir = path.join(clientPublicDir, 'css');
-const javaScriptDir = path.join(clientPublicDir, 'js');
 
 const serverSrcDir = 'src/server';
 const serverDistDir = 'dist/server';
 const serverIndexPath = 'dist/server/index.js';
 
-const server = new MyServer(serverIndexPath, config);
+let config;
+let server;
 
 //======================== FOLDER STRUCTURE HOLDERS ==========================//
 
+let contentFiles;
 let clientFiles;
 let serverFiles;
 let publicFiles;
+
+function updateContentsDirTree() {
+  contentFiles = createDirTree(contentsDir, {
+    filter: filterExtensions([ 'md' ])
+  });
+}
 
 function updateClientDirTree() {
   clientFiles = createDirTree(clientSrcDir, {
@@ -63,24 +66,48 @@ function updatePublicDirTree() {
   });
 }
 
-//============================= SCRIPT SELECTOR ==============================//
+// let configName = 'default';
 
-if (process.argv.length > 2) {
-  if (process.argv[2] === 'watch') {
-    build().then(start);
-    watchSource();
-  } else if (process.argv[2] === 'start') {
-    build().then(start);
-  } else if (process.argv[2] === 'render') {
-    build().then(renderHtml);
+// if (process.argv.length > 3) {
+//   configName = process.argv[3];
+// }
+
+const configName = process.argv[3] || 'default';
+
+updateServerDirTree();
+const file = getFileFromFilename(`src/server/config/${configName}.js`, serverFiles);
+// console.log(inspect(file));
+transpiler.transpileFile(file, serverSrcDir, serverDistDir)
+.then(function() {
+  config = require(path.join('../dist/server/config', configName)).default;
+  clientPublicDir = config.publicDir;
+  cssDir = path.join(clientPublicDir, 'css');
+  javaScriptDir = path.join(clientPublicDir, 'js');
+
+  server = new MyServer(serverIndexPath, config);
+
+  //============================ SCRIPT SELECTOR =============================//
+
+  if (process.argv.length > 2) {
+    if (process.argv[2] === 'watch') {
+      build().then(start);
+      watchSource();
+    } else if (process.argv[2] === 'start') {
+      build().then(start);
+    } else if (process.argv[2] === 'render') {
+      build().then(renderHtml);
+    }
   }
-}
+});
+
 
 //* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * */
 //================================== BUILD ===================================//
 //* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * */
 
 function build() {
+
+  updateContentsDirTree()
   updateClientDirTree();
   updateServerDirTree();
 
@@ -101,6 +128,7 @@ function build() {
     Promise.all([
       // regenerate them from actual source code
       transpiler.renderStyle(sassDir, cssDir),
+      transpiler.renderEjsFilesFromMarkdown(contentFiles, contentsDir, contentsOutputDir, config),
       transpiler.transpileFileAndChildren(clientFiles, clientSrcDir, clientDistDir),
       transpiler.bundleFileAndChildren(clientFiles, clientSrcDir, clientDistDir, javaScriptDir),
       transpiler.transpileFileAndChildren(serverFiles, serverSrcDir, serverDistDir),
@@ -126,10 +154,12 @@ function start() {
 //* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * */
 
 function renderHtml() {
+  updateContentsDirTree();
   updatePublicDirTree();
   const routes = require('../dist/server/routes').default;
   logger.startTwirling();
 
+  // transpiler.renderEjsFilesFromMarkdown(contentFiles, contentsDir, contentsOutputDir, config);
   transpiler.removeHtmlFiles(publicFiles);
   transpiler.renderHtmlFiles(routes, clientPublicDir, config)
   .then(function() {
@@ -162,6 +192,30 @@ function watchSource() {
     monitor.on('created', onStyleSrcChange);
     monitor.on('changed', onStyleSrcChange);
     monitor.on('removed', function(f) { /* do nothing */ });
+  });
+
+  //=========================== WATCH CONTENTS ===============================//
+
+  const onContentsChange = function(f) {
+    updateContentsDirTree();
+    const file = getFileFromFilename(f, contentFiles);
+    logger.startTwirling();
+
+    transpiler.renderEjsFilesFromMarkdown(file, contentsDir, contentsOutputDir, config)
+    .then(function() {
+      logger.stopTwirling();
+      logger.notifyDone();
+    });
+  };
+
+  watch.createMonitor(contentsDir, {
+    filter: filterExtensions([ 'md' ])
+  }, function(monitor) {
+    monitor.on('created', onContentsChange);
+    monitor.on('changed', onContentsChange);
+    monitor.on('removed', function(f) {
+      fs.removeSync(f.replace(contentsDir, contentsOutputDir));
+    });
   });
 
   //=========================== WATCH CLIENT SRC =============================//
@@ -198,6 +252,7 @@ function watchSource() {
     updateServerDirTree();
     const file = getFileFromFilename(f, serverFiles);
     logger.startTwirling();
+
     transpiler.transpileFile(file, serverSrcDir, serverDistDir)
     .then(function() {
       logger.stopTwirling();
