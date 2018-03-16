@@ -536,3 +536,5 @@ a .responsive-square-item-content {
 /**
  * Overrides for custom styles
  */
+div.black {
+  background-color: black; }
