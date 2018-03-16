@@ -66,17 +66,10 @@ function updatePublicDirTree() {
   });
 }
 
-// let configName = 'default';
-
-// if (process.argv.length > 3) {
-//   configName = process.argv[3];
-// }
-
 const configName = process.argv[3] || 'default';
 
 updateServerDirTree();
 const file = getFileFromFilename(`src/server/config/${configName}.js`, serverFiles);
-// console.log(inspect(file));
 transpiler.transpileFile(file, serverSrcDir, serverDistDir)
 .then(function() {
   config = require(path.join('../dist/server/config', configName)).default;
@@ -130,7 +123,7 @@ function build() {
       transpiler.renderStyle(sassDir, cssDir),
       transpiler.renderEjsFilesFromMarkdown(contentFiles, contentsDir, contentsOutputDir, config),
       transpiler.transpileFileAndChildren(clientFiles, clientSrcDir, clientDistDir),
-      transpiler.bundleFileAndChildren(clientFiles, clientSrcDir, clientDistDir, javaScriptDir),
+      transpiler.bundleFileAndChildren(clientFiles, clientSrcDir, clientDistDir, javaScriptDir, config),
       transpiler.transpileFileAndChildren(serverFiles, serverSrcDir, serverDistDir),
     ]).then(function() {
       logger.stopTwirling();
@@ -145,7 +138,6 @@ function build() {
 //* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * */
 
 function start() {
-  // todo: delete static html files from public dir
   server.start();
 }
 
@@ -159,7 +151,6 @@ function renderHtml() {
   const routes = require('../dist/server/routes').default;
   logger.startTwirling();
 
-  // transpiler.renderEjsFilesFromMarkdown(contentFiles, contentsDir, contentsOutputDir, config);
   transpiler.removeHtmlFiles(publicFiles);
   transpiler.renderHtmlFiles(routes, clientPublicDir, config)
   .then(function() {
@@ -227,7 +218,7 @@ function watchSource() {
 
     transpiler.transpileFile(file, clientSrcDir, clientDistDir)
     .then(function() {
-      transpiler.bundleFileAndParents(file, clientSrcDir, clientDistDir, javaScriptDir);
+      transpiler.bundleFileAndParents(file, clientSrcDir, clientDistDir, javaScriptDir, config);
     })
     .then(function() {
       logger.stopTwirling();

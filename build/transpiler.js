@@ -245,10 +245,12 @@ function transpileFileAndChildren(inputFiles, inputDir, outputDir) {
 
 //============================== BROWSERIFY ==================================//
 
-function bundleFile(file, srcDir, distDir, bundleDir) {
+function bundleFile(file, srcDir, distDir, bundleDir, config) {
   return new Promise(function(resolve, reject) {
     const distFilepath = file.path.replace(srcDir, distDir);
-    const bundleFilepath = file.path.replace(srcDir, bundleDir);
+    const bundleFilepath = config.minify
+                         ? file.path.replace(srcDir, bundleDir).replace('.js', '.min.js')
+                         : file.path.replace(srcDir, bundleDir);
     const task = `bundling file ${distFilepath} to ${bundleFilepath}`;
     logger.notifyStartTask(task);
 
@@ -259,6 +261,10 @@ function bundleFile(file, srcDir, distDir, bundleDir) {
       if (err !== null) {
         logger.notifyTaskError(task, err);
       } else {
+        if (config.minify) {
+          res = uglify.minify(res.toString());
+          res = res.code;
+        }
         fs.ensureFileSync(bundleFilepath);
         fs.writeFileSync(bundleFilepath, res);
       }
@@ -272,19 +278,19 @@ function bundleFile(file, srcDir, distDir, bundleDir) {
 
 // pass this function a folder
 
-function bundleFileAndChildrenImpl(changedFile, srcDir, distDir, bundleDir, promises) {
+function bundleFileAndChildrenImpl(changedFile, srcDir, distDir, bundleDir, config, promises) {
   if (changedFile.type === 'file' && changedFile.name === 'index.js') {
-    promises.push(bundleFile(changedFile, srcDir, distDir, bundleDir));
+    promises.push(bundleFile(changedFile, srcDir, distDir, bundleDir, config));
   } else if (changedFile.type === 'folder' && changedFile.children) {
     for (let i = 0; i < changedFile.children.length; i++) {
-      bundleFileAndChildrenImpl(changedFile.children[i], srcDir, distDir, bundleDir, promises);
+      bundleFileAndChildrenImpl(changedFile.children[i], srcDir, distDir, bundleDir, config, promises);
     }
   }
 }
 
-function bundleFileAndChildren(changedFile, srcDir, distDir, bundleDir) {
+function bundleFileAndChildren(changedFile, srcDir, distDir, bundleDir, config) {
   const bundlePromises = [];
-  bundleFileAndChildrenImpl(changedFile, srcDir, distDir, bundleDir, bundlePromises)
+  bundleFileAndChildrenImpl(changedFile, srcDir, distDir, bundleDir, config, bundlePromises)
   return Promise.all(bundlePromises);
 }
 
@@ -298,7 +304,7 @@ function bundleFileAndChildren(changedFile, srcDir, distDir, bundleDir) {
 // if not, transpile all index files located in same level folder, and all other
 // upper level index files
 
-function bundleFileAndParentsImpl(changedFile, srcDir, distDir, bundleDir, promises) {
+function bundleFileAndParentsImpl(changedFile, srcDir, distDir, bundleDir, config, promises) {
   let rootDir;
 
   if (changedFile.type === 'file') {
@@ -313,7 +319,7 @@ function bundleFileAndParentsImpl(changedFile, srcDir, distDir, bundleDir, promi
   if (rootDir.containsIndexFile) { // only rebundle this one
     for (i = 0; i < children.length; i++) {
       if (children[i].name === 'index.js') {
-        promises.push(bundleFile(children[i], srcDir, distDir, bundleDir));
+        promises.push(bundleFile(children[i], srcDir, distDir, bundleDir, config));
         break;
       }
     }
@@ -324,7 +330,7 @@ function bundleFileAndParentsImpl(changedFile, srcDir, distDir, bundleDir, promi
           const nephews = brothers[i].children;
           for (let j = 0; j < nephews.length; j++) {
             if (nephews[j].name === 'index.js') {
-              promises.push(bundleFile(nephews[j], srcDir, distDir, bundleDir));
+              promises.push(bundleFile(nephews[j], srcDir, distDir, bundleDir, config));
               break;
             }
           }
@@ -335,13 +341,13 @@ function bundleFileAndParentsImpl(changedFile, srcDir, distDir, bundleDir, promi
 
   // then propagate to parents
   if (rootDir.parent !== null) {
-    bundleFileAndParentsImpl(rootDir.parent, srcDir, distDir, bundleDir, promises);
+    bundleFileAndParentsImpl(rootDir.parent, srcDir, distDir, bundleDir, config, promises);
   }
 }
 
-function bundleFileAndParents(changedFile, srcDir, distDir, bundleDir) {
+function bundleFileAndParents(changedFile, srcDir, distDir, bundleDir, config) {
   const bundlePromises = [];
-  bundleFileAndParentsImpl(changedFile, srcDir, distDir, bundleDir, bundlePromises);
+  bundleFileAndParentsImpl(changedFile, srcDir, distDir, bundleDir, config, bundlePromises);
   return Promise.all(bundlePromises);
 }
 
